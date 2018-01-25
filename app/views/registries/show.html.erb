@@ -1,0 +1,69 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Consecutivo:</strong>
+  <%= @registry.consecutivo %>
+</p>
+
+<p>
+  <strong>Folio:</strong>
+  <%= @registry.folio %>
+</p>
+
+<p>
+  <strong>Year folio:</strong>
+  <%= @registry.year_folio %>
+</p>
+
+<p>
+  <strong>Expedient:</strong>
+  <%= @registry.expedient %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @registry.city %>
+</p>
+
+<p>
+  <strong>Authority:</strong>
+  <%= @registry.authority %>
+</p>
+
+<p>
+  <strong>Anexos recibidos:</strong>
+  <%= @registry.anexos_recibidos %>
+</p>
+
+<p>
+  <strong>Fecha recepcion:</strong>
+  <%= @registry.fecha_recepcion %>
+</p>
+
+<p>
+  <strong>Expert:</strong>
+  <%= @registry.expert %>
+</p>
+
+<p>
+  <strong>Fecha entrega:</strong>
+  <%= @registry.fecha_entrega %>
+</p>
+
+<p>
+  <strong>Result:</strong>
+  <%= @registry.result %>
+</p>
+
+<p>
+  <strong>Anexos entregados:</strong>
+  <%= @registry.anexos_entregados %>
+</p>
+
+<p>
+  <strong>Observaciones:</strong>
+  <%= @registry.observaciones %>
+</p>
+
+<%= link_to 'Edit', edit_registry_path(@registry) %> |
+<%= link_to 'Back', registries_path %>

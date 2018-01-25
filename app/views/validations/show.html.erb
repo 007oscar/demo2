@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Registry:</strong>
+  <%= @validation.registry %>
+</p>
+
+<p>
+  <strong>Nombres:</strong>
+  <%= @validation.nombres %>
+</p>
+
+<p>
+  <strong>Apellidos:</strong>
+  <%= @validation.apellidos %>
+</p>
+
+<%= link_to 'Edit', edit_validation_path(@validation) %> |
+<%= link_to 'Back', validations_path %>

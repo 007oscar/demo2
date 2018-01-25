@@ -1,0 +1,79 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>City:</strong>
+  <%= @verification.city %>
+</p>
+
+<p>
+  <strong>Fecha:</strong>
+  <%= @verification.fecha %>
+</p>
+
+<p>
+  <strong>Registry:</strong>
+  <%= @verification.registry %>
+</p>
+
+<p>
+  <strong>Expedient:</strong>
+  <%= @verification.expedient %>
+</p>
+
+<p>
+  <strong>Incluye expediente:</strong>
+  <%= @verification.incluye_expediente %>
+</p>
+
+<p>
+  <strong>Coincide expediente:</strong>
+  <%= @verification.coincide_expediente %>
+</p>
+
+<p>
+  <strong>Incluye anexos:</strong>
+  <%= @verification.incluye_anexos %>
+</p>
+
+<p>
+  <strong>Coinciden anexos:</strong>
+  <%= @verification.coinciden_anexos %>
+</p>
+
+<p>
+  <strong>Anexos equipos de computo:</strong>
+  <%= @verification.anexos_equipos_de_computo %>
+</p>
+
+<p>
+  <strong>Anexos equipo de comunicacion:</strong>
+  <%= @verification.anexos_equipo_de_comunicacion %>
+</p>
+
+<p>
+  <strong>Anexos material fotografico:</strong>
+  <%= @verification.anexos_material_fotografico %>
+</p>
+
+<p>
+  <strong>Anexos disp alm elect:</strong>
+  <%= @verification.anexos_disp_alm_elect %>
+</p>
+
+<p>
+  <strong>Anexos componentes electronicos:</strong>
+  <%= @verification.anexos_componentes_electronicos %>
+</p>
+
+<p>
+  <strong>Otros:</strong>
+  <%= @verification.otros %>
+</p>
+
+<p>
+  <strong>Expert:</strong>
+  <%= @verification.expert %>
+</p>
+
+<%= link_to 'Edit', edit_verification_path(@verification) %> |
+<%= link_to 'Back', verifications_path %>

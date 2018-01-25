@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  registry: one
+  nombres: MyString
+  apellidos: MyString
+
+two:
+  registry: two
+  nombres: MyString
+  apellidos: MyString

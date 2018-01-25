@@ -1,0 +1,92 @@
+<%= form_with(model: verification, local: true) do |form| %>
+  <% if verification.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(verification.errors.count, "error") %> prohibited this verification from being saved:</h2>
+
+      <ul>
+      <% verification.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :city_id %>
+    <%= form.text_field :city_id, id: :verification_city_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fecha %>
+    <%= form.datetime_select :fecha, id: :verification_fecha %>
+  </div>
+
+  <div class="field">
+    <%= form.label :registry_id %>
+    <%= form.text_field :registry_id, id: :verification_registry_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :expedient_id %>
+    <%= form.text_field :expedient_id, id: :verification_expedient_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :incluye_expediente %>
+    <%= form.check_box :incluye_expediente, id: :verification_incluye_expediente %>
+  </div>
+
+  <div class="field">
+    <%= form.label :coincide_expediente %>
+    <%= form.check_box :coincide_expediente, id: :verification_coincide_expediente %>
+  </div>
+
+  <div class="field">
+    <%= form.label :incluye_anexos %>
+    <%= form.check_box :incluye_anexos, id: :verification_incluye_anexos %>
+  </div>
+
+  <div class="field">
+    <%= form.label :coinciden_anexos %>
+    <%= form.check_box :coinciden_anexos, id: :verification_coinciden_anexos %>
+  </div>
+
+  <div class="field">
+    <%= form.label :anexos_equipos_de_computo %>
+    <%= form.check_box :anexos_equipos_de_computo, id: :verification_anexos_equipos_de_computo %>
+  </div>
+
+  <div class="field">
+    <%= form.label :anexos_equipo_de_comunicacion %>
+    <%= form.check_box :anexos_equipo_de_comunicacion, id: :verification_anexos_equipo_de_comunicacion %>
+  </div>
+
+  <div class="field">
+    <%= form.label :anexos_material_fotografico %>
+    <%= form.check_box :anexos_material_fotografico, id: :verification_anexos_material_fotografico %>
+  </div>
+
+  <div class="field">
+    <%= form.label :anexos_disp_alm_elect %>
+    <%= form.check_box :anexos_disp_alm_elect, id: :verification_anexos_disp_alm_elect %>
+  </div>
+
+  <div class="field">
+    <%= form.label :anexos_componentes_electronicos %>
+    <%= form.check_box :anexos_componentes_electronicos, id: :verification_anexos_componentes_electronicos %>
+  </div>
+
+  <div class="field">
+    <%= form.label :otros %>
+    <%= form.check_box :otros, id: :verification_otros %>
+  </div>
+
+  <div class="field">
+    <%= form.label :expert_id %>
+    <%= form.text_field :expert_id, id: :verification_expert_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

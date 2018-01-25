@@ -1,0 +1,2 @@
+class Expedient < ApplicationRecord
+end

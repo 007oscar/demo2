@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Expedients</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Expediente</th>
+      <th>Hojas</th>
+      <th>A inicial</th>
+      <th>A final</th>
+      <th>Hojas</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @expedients.each do |expedient| %>
+      <tr>
+        <td><%= expedient.expediente %></td>
+        <td><%= expedient.hojas %></td>
+        <td><%= expedient.a_inicial %></td>
+        <td><%= expedient.a_final %></td>
+        <td><%= expedient.hojas %></td>
+        <td><%= link_to 'Show', expedient %></td>
+        <td><%= link_to 'Edit', edit_expedient_path(expedient) %></td>
+        <td><%= link_to 'Destroy', expedient, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Expedient', new_expedient_path %>

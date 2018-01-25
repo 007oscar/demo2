@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  expediente: MyString
+  hojas: 1
+  a_inicial: 1
+  a_final: 1
+  hojas: 1
+
+two:
+  expediente: MyString
+  hojas: 1
+  a_inicial: 1
+  a_final: 1
+  hojas: 1

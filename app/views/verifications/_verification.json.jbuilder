@@ -1,0 +1,2 @@
+json.extract! verification, :id, :city_id, :fecha, :registry_id, :expedient_id, :incluye_expediente, :coincide_expediente, :incluye_anexos, :coinciden_anexos, :anexos_equipos_de_computo, :anexos_equipo_de_comunicacion, :anexos_material_fotografico, :anexos_disp_alm_elect, :anexos_componentes_electronicos, :otros, :expert_id, :created_at, :updated_at
+json.url verification_url(verification, format: :json)

@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  consecutivo: 1
+  folio: 1
+  year_folio: 1
+  expedient: one
+  city: one
+  authority: one
+  anexos_recibidos: MyText
+  fecha_recepcion: 2018-01-25 13:21:30
+  expert: one
+  fecha_entrega: 2018-01-25 13:21:30
+  result: one
+  anexos_entregados: MyText
+  observaciones: MyText
+
+two:
+  consecutivo: 1
+  folio: 1
+  year_folio: 1
+  expedient: two
+  city: two
+  authority: two
+  anexos_recibidos: MyText
+  fecha_recepcion: 2018-01-25 13:21:30
+  expert: two
+  fecha_entrega: 2018-01-25 13:21:30
+  result: two
+  anexos_entregados: MyText
+  observaciones: MyText

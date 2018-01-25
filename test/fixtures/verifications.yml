@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  city: one
+  fecha: 2018-01-25 13:46:53
+  registry: one
+  expedient: one
+  incluye_expediente: false
+  coincide_expediente: false
+  incluye_anexos: false
+  coinciden_anexos: false
+  anexos_equipos_de_computo: false
+  anexos_equipo_de_comunicacion: false
+  anexos_material_fotografico: false
+  anexos_disp_alm_elect: false
+  anexos_componentes_electronicos: false
+  otros: false
+  expert: one
+
+two:
+  city: two
+  fecha: 2018-01-25 13:46:53
+  registry: two
+  expedient: two
+  incluye_expediente: false
+  coincide_expediente: false
+  incluye_anexos: false
+  coinciden_anexos: false
+  anexos_equipos_de_computo: false
+  anexos_equipo_de_comunicacion: false
+  anexos_material_fotografico: false
+  anexos_disp_alm_elect: false
+  anexos_componentes_electronicos: false
+  otros: false
+  expert: two
