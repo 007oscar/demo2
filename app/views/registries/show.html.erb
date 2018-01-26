@@ -17,17 +17,17 @@
 
 <p>
   <strong>Expedient:</strong>
-  <%= @registry.expedient %>
+  <%= @registry.expedient.expediente %>
 </p>
 
 <p>
   <strong>City:</strong>
-  <%= @registry.city %>
+  <%= @registry.city.ciudad %>
 </p>
 
 <p>
   <strong>Authority:</strong>
-  <%= @registry.authority %>
+  <%= "#{@registry.authority.title.titulo} #{@registry.authority.nombres} #{@registry.authority.apellidos}" %>
 </p>
 
 <p>
@@ -42,7 +42,7 @@
 
 <p>
   <strong>Expert:</strong>
-  <%= @registry.expert %>
+  <%= "#{@registry.expert.nombres} #{@registry.expert.apellidos}" %>
 </p>
 
 <p>
@@ -52,7 +52,7 @@
 
 <p>
   <strong>Result:</strong>
-  <%= @registry.result %>
+  <%= @registry.result.resultado %>
 </p>
 
 <p>
