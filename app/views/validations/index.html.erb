@@ -15,7 +15,7 @@
   <tbody>
     <% @validations.each do |validation| %>
       <tr>
-        <td><%= validation.registry %></td>
+        <td><%= validation.registry.folio %></td>
         <td><%= validation.nombres %></td>
         <td><%= validation.apellidos %></td>
         <td><%= link_to 'Show', validation %></td>

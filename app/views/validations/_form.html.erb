@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= form.label :registry_id %>
-    <%= form.text_field :registry_id, id: :validation_registry_id %>
+    <%= form.select :registry_id, Registry.all.map { |r| [r.folio, r.id]}, :prompt => "select one" %>
   </div>
 
   <div class="field">
