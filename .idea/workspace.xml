@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="10082732-1f9c-43e7-8eb1-78c85468495c" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/specialties_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/specialties_controller.rb" />
-      <change beforePath="$PROJECT_DIR$/app/models/specialty.rb" afterPath="$PROJECT_DIR$/app/models/specialty.rb" />
-      <change beforePath="$PROJECT_DIR$/app/views/specialties/_form.html.erb" afterPath="$PROJECT_DIR$/app/views/specialties/_form.html.erb" />
-      <change beforePath="$PROJECT_DIR$/app/views/specialties/index.html.erb" afterPath="$PROJECT_DIR$/app/views/specialties/index.html.erb" />
-      <change beforePath="$PROJECT_DIR$/app/views/specialties/show.html.erb" afterPath="$PROJECT_DIR$/app/views/specialties/show.html.erb" />
-      <change beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
-    </list>
+    <list default="true" id="10082732-1f9c-43e7-8eb1-78c85468495c" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
     <ignored path="$PROJECT_DIR$/public/system/" />
@@ -374,7 +366,7 @@
       <workItem from="1516932565542" duration="193000" />
       <workItem from="1516932816067" duration="7025000" />
       <workItem from="1516988124930" duration="3656000" />
-      <workItem from="1517002150519" duration="1619000" />
+      <workItem from="1517002150519" duration="1683000" />
     </task>
     <task id="LOCAL-00001" summary="se aplica bundle install para cargarlo en rubymine">
       <created>1516913632209</created>
@@ -387,7 +379,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17707000" />
+    <option name="totallyTimeSpent" value="17771000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">

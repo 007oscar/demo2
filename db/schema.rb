@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180126215057) do
+ActiveRecord::Schema.define(version: 20180126215825) do
 
   create_table "authorities", force: :cascade do |t|
     t.string "nombres"
@@ -42,6 +42,15 @@ ActiveRecord::Schema.define(version: 20180126215057) do
     t.string "apellidos"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "has_specialties", force: :cascade do |t|
+    t.integer "expert_id"
+    t.integer "specialty_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["expert_id"], name: "index_has_specialties_on_expert_id"
+    t.index ["specialty_id"], name: "index_has_specialties_on_specialty_id"
   end
 
   create_table "registries", force: :cascade do |t|
