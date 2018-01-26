@@ -29,11 +29,11 @@
         <td><%= registry.folio %></td>
         <td><%= registry.year_folio %></td>
         <td><%= registry.expedient.expediente %></td>
-        <td><%= registry.city %></td>
-        <td><%= registry.authority %></td>
+        <td><%= registry.city.ciudad %></td>
+        <td><%= "#{registry.authority.title.titulo} #{registry.authority.nombres} #{registry.authority.apellidos}" %></td>
         <td><%= registry.anexos_recibidos %></td>
         <td><%= registry.fecha_recepcion %></td>
-        <td><%= registry.expert.nombres %></td>
+        <td><%= "#{registry.expert.nombres} #{registry.expert.apellidos}" %></td>
         <td><%= registry.fecha_entrega %></td>
         <td><%= registry.result.resultado %></td>
         <td><%= registry.anexos_entregados %></td>

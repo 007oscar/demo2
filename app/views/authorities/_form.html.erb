@@ -12,6 +12,11 @@
   <% end %>
 
   <div class="field">
+    <%= form.label :title_id %>
+    <%= form.select :title_id, Title.all.map{|t| [ t.titulo, t.id]}, :prompt => "Select One" %>
+  </div>
+
+  <div class="field">
     <%= form.label :nombres %>
     <%= form.text_field :nombres, id: :authority_nombres %>
   </div>
@@ -19,11 +24,6 @@
   <div class="field">
     <%= form.label :apellidos %>
     <%= form.text_field :apellidos, id: :authority_apellidos %>
-  </div>
-
-  <div class="field">
-    <%= form.label :title_id %>
-    <%= form.text_field :title_id, id: :authority_title_id %>
   </div>
 
   <div class="actions">

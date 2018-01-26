@@ -1,6 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Title:</strong>
+  <%= @authority.title.titulo %>
+</p>
+
+<p>
   <strong>Nombres:</strong>
   <%= @authority.nombres %>
 </p>
@@ -10,10 +15,7 @@
   <%= @authority.apellidos %>
 </p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @authority.title %>
-</p>
+
 
 <%= link_to 'Edit', edit_authority_path(@authority) %> |
 <%= link_to 'Back', authorities_path %>

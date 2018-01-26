@@ -5,9 +5,10 @@
 <table>
   <thead>
     <tr>
+      <th>Title</th>
       <th>Nombres</th>
       <th>Apellidos</th>
-      <th>Title</th>
+
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,9 +16,10 @@
   <tbody>
     <% @authorities.each do |authority| %>
       <tr>
+        <td><%= authority.title.titulo %></td>
         <td><%= authority.nombres %></td>
         <td><%= authority.apellidos %></td>
-        <td><%= authority.title %></td>
+
         <td><%= link_to 'Show', authority %></td>
         <td><%= link_to 'Edit', edit_authority_path(authority) %></td>
         <td><%= link_to 'Destroy', authority, method: :delete, data: { confirm: 'Are you sure?' } %></td>
