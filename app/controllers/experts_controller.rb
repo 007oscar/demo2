@@ -69,6 +69,6 @@ class ExpertsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def expert_params
-      params.require(:expert).permit(:nombres, :apellidos)
+      params.require(:expert).permit(:title_id, :nombres, :apellidos)
     end
 end
