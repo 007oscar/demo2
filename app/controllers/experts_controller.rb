@@ -15,6 +15,7 @@ class ExpertsController < ApplicationController
   # GET /experts/new
   def new
     @expert = Expert.new
+    @specialty = Specialty.all
   end
 
   # GET /experts/1/edit
@@ -25,7 +26,8 @@ class ExpertsController < ApplicationController
   # POST /experts.json
   def create
     @expert = Expert.new(expert_params)
-
+    # @expert.specialty_ids = params[:specialty_ids]
+    # raise params.to_yaml
     respond_to do |format|
       if @expert.save
         format.html { redirect_to @expert, notice: 'Expert was successfully created.' }
@@ -69,6 +71,6 @@ class ExpertsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def expert_params
-      params.require(:expert).permit(:title_id, :nombres, :apellidos)
+      params.require(:expert).permit(:id, :nombres, :apellidos, :title_id, :specialty_ids => [])
     end
 end

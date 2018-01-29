@@ -26,6 +26,14 @@
     <%= form.text_field :apellidos, id: :expert_apellidos %>
   </div>
 
+  <div class="field" >
+    <%= hidden_field_tag "expert[specialty_ids][]", nil %>
+    <% Specialty.all.each do |s| %>
+      <%= check_box_tag "expert[specialty_ids][]", s.id, @expert.specialty_ids.include?(s.id), id: dom_id(s) %>
+      <%= label_tag dom_id(s), s.especialidad %><br>
+    <% end %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

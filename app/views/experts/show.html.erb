@@ -14,5 +14,13 @@
   <%= @expert.apellidos %>
 </p>
 
+<p>
+  <strong>Especialidades:</strong>
+  <% @expert.specialties.each do |specialty| %><br>
+    <%= specialty.especialidad %>
+  <% end %>
+
+</p>
+
 <%= link_to 'Edit', edit_expert_path(@expert) %> |
 <%= link_to 'Back', experts_path %>
