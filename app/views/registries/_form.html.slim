@@ -1,0 +1,51 @@
+= form_with(model: registry, local: true) do |form|
+  - if registry.errors.any?
+    #error_explanation
+      h2
+        = pluralize(registry.errors.count, "error")
+        | prohibited this registry from being saved:
+      ul
+        - registry.errors.full_messages.each do |message|
+          li= message
+  .field
+    = form.label :consecutivo
+    = form.number_field :consecutivo, id: :registry_consecutivo
+  .field
+    = form.label :folio
+    = form.number_field :folio, id: :registry_folio
+  .field
+    = form.label :year_folio
+    = form.number_field :year_folio, id: :registry_year_folio
+  .field
+    = form.label :expedient_id
+    = form.select :expedient_id, Expedient.all.map { |e| [e.expediente, e.id]}, :prompt => "select one"
+    = link_to "nuevo", new_expedient_path
+  .field
+    = form.label :city_id
+    = form.select :city_id, City.all.map{|c| [ "#{c.ciudad}, #{c.estado}", c.id]}, :prompt => "Select One"
+  .field
+    = form.label :authority_id
+    = form.select :authority_id, Authority.all.map{|a| [ "#{a.nombres} #{a.apellidos}", a.id]}, :prompt => "Select One"
+  .field
+    = form.label :anexos_recibidos
+    = form.text_area :anexos_recibidos, id: :registry_anexos_recibidos
+  .field
+    = form.label :fecha_recepcion
+    = form.datetime_select :fecha_recepcion, id: :registry_fecha_recepcion
+  .field
+    = form.label :expert_id
+    = form.select :expert_id, Expert.all.map{|e| [ "#{e.nombres} #{e.apellidos}", e.id]}, :prompt => "Select One"
+  .field
+    = form.label :fecha_entrega
+    = form.datetime_select :fecha_entrega, id: :registry_fecha_entrega
+  .field
+    = form.label :result_id
+    = form.select :result_id, Result.all.map{|r| [ r.resultado, r.id]}, :prompt => "Select One"
+  .field
+    = form.label :anexos_entregados
+    = form.text_area :anexos_entregados, id: :registry_anexos_entregados
+  .field
+    = form.label :observaciones
+    = form.text_area :observaciones, id: :registry_observaciones
+  .actions
+    = form.submit
