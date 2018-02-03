@@ -1,0 +1,11 @@
+= simple_form_for @expedient do |f|
+  = f.input :expediente
+  = f.input :hojas
+  = f.input :a_inicial
+  = f.input :a_final
+  #registros
+    = f.fields_for :registries do |r|
+      = render "registry_fields", f: r
+    .links
+      = link_to_add_association "agregar registro", f, :registries
+  = f.submit

@@ -1,26 +1,4 @@
-= form_with(model: expert, local: true) do |form|
-  - if expert.errors.any?
-    #error_explanation
-      h2
-        = pluralize(expert.errors.count, "error")
-        | prohibited this expert from being saved:
-      ul
-        - expert.errors.full_messages.each do |message|
-          li= message
-  .field
-    = form.label :title_id
-    = form.select :title_id, Title.all.map { |t| [t.titulo, t.id]}, :prompt => "select one"
-  .field
-    = form.label :nombres
-    = form.text_field :nombres, id: :expert_nombres
-  .field
-    = form.label :apellidos
-    = form.text_field :apellidos, id: :expert_apellidos
-  .field
-    = hidden_field_tag "expert[specialty_ids][]", nil
-    - Specialty.all.each do |s|
-      = check_box_tag "expert[specialty_ids][]", s.id, @expert.specialty_ids.include?(s.id), id: dom_id(s)
-      = label_tag dom_id(s), s.especialidad
-      br
-  .actions
-    = form.submit
+= simple_form_for expert do |f|
+  = f.input :nombre
+  = f.association :specialties, as: :check_boxes
+  = f.submit

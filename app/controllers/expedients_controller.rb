@@ -26,6 +26,8 @@ class ExpedientsController < ApplicationController
   def create
     @expedient = Expedient.new(expedient_params)
 
+    #raise params.to_yalm
+
     respond_to do |format|
       if @expedient.save
         format.html { redirect_to @expedient, notice: 'Expedient was successfully created.' }
@@ -69,6 +71,7 @@ class ExpedientsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def expedient_params
-      params.require(:expedient).permit(:expediente, :hojas, :a_inicial, :a_final, :hojas)
+      params.require(:expedient).permit(:expediente, :hojas, :a_inicial, :a_final, :hojas,
+                                        registries_attributes: Registry.attribute_names.map(&:to_sym).push(:_destroy))
     end
 end

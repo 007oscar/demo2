@@ -10,67 +10,62 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180127021343) do
+ActiveRecord::Schema.define(version: 20180202032433) do
 
   create_table "authorities", force: :cascade do |t|
-    t.string "nombres"
-    t.string "apellidos"
-    t.integer "title_id"
+    t.string   "nombre"
+    t.string   "puesto"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["title_id"], name: "index_authorities_on_title_id"
   end
 
   create_table "cities", force: :cascade do |t|
-    t.string "ciudad"
-    t.string "estado"
+    t.string   "ciudad"
+    t.string   "estado"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "expedients", force: :cascade do |t|
-    t.string "expediente"
-    t.integer "hojas"
-    t.integer "a_inicial"
-    t.integer "a_final"
+    t.string   "expediente"
+    t.integer  "hojas"
+    t.integer  "a_inicial"
+    t.integer  "a_final"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "experts", force: :cascade do |t|
-    t.string "nombres"
-    t.string "apellidos"
+    t.string   "nombre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "title_id"
-    t.index ["title_id"], name: "index_experts_on_title_id"
   end
 
   create_table "has_specialties", force: :cascade do |t|
-    t.integer "expert_id"
-    t.integer "specialty_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "expert_id"
+    t.integer  "specialty_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.index ["expert_id"], name: "index_has_specialties_on_expert_id"
     t.index ["specialty_id"], name: "index_has_specialties_on_specialty_id"
   end
 
   create_table "registries", force: :cascade do |t|
-    t.integer "consecutivo"
-    t.integer "folio"
-    t.integer "year_folio"
-    t.integer "expedient_id"
-    t.integer "city_id"
-    t.integer "authority_id"
-    t.text "anexos_recibidos"
+    t.integer  "consecutivo"
+    t.integer  "folio"
+    t.integer  "year_folio"
+    t.integer  "expedient_id"
+    t.integer  "city_id"
+    t.integer  "authority_id"
+    t.text     "anexos_recibidos"
     t.datetime "fecha_recepcion"
-    t.integer "expert_id"
+    t.integer  "expert_id"
     t.datetime "fecha_entrega"
-    t.integer "result_id"
-    t.text "anexos_entregados"
-    t.text "observaciones"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "result_id"
+    t.text     "anexos_entregados"
+    t.text     "observaciones"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.index ["authority_id"], name: "index_registries_on_authority_id"
     t.index ["city_id"], name: "index_registries_on_city_id"
     t.index ["expedient_id"], name: "index_registries_on_expedient_id"
@@ -79,50 +74,44 @@ ActiveRecord::Schema.define(version: 20180127021343) do
   end
 
   create_table "results", force: :cascade do |t|
-    t.string "resultado"
+    t.string   "resultado"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "specialties", force: :cascade do |t|
-    t.string "especialidad"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "titles", force: :cascade do |t|
-    t.string "titulo"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "especialidad"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "validations", force: :cascade do |t|
-    t.integer "registry_id"
-    t.string "nombres"
-    t.string "apellidos"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "registry_id"
+    t.string   "nombres"
+    t.string   "apellidos"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.index ["registry_id"], name: "index_validations_on_registry_id"
   end
 
   create_table "verifications", force: :cascade do |t|
-    t.integer "city_id"
+    t.integer  "city_id"
     t.datetime "fecha"
-    t.integer "registry_id"
-    t.integer "expedient_id"
-    t.boolean "incluye_expediente"
-    t.boolean "coincide_expediente"
-    t.boolean "incluye_anexos"
-    t.boolean "coinciden_anexos"
-    t.boolean "anexos_equipos_de_computo"
-    t.boolean "anexos_equipo_de_comunicacion"
-    t.boolean "anexos_material_fotografico"
-    t.boolean "anexos_disp_alm_elect"
-    t.boolean "anexos_componentes_electronicos"
-    t.boolean "otros"
-    t.integer "expert_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "registry_id"
+    t.integer  "expedient_id"
+    t.boolean  "incluye_expediente"
+    t.boolean  "coincide_expediente"
+    t.boolean  "incluye_anexos"
+    t.boolean  "coinciden_anexos"
+    t.boolean  "anexos_equipos_de_computo"
+    t.boolean  "anexos_equipo_de_comunicacion"
+    t.boolean  "anexos_material_fotografico"
+    t.boolean  "anexos_disp_alm_elect"
+    t.boolean  "anexos_componentes_electronicos"
+    t.boolean  "otros"
+    t.integer  "expert_id"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.index ["city_id"], name: "index_verifications_on_city_id"
     t.index ["expedient_id"], name: "index_verifications_on_expedient_id"
     t.index ["expert_id"], name: "index_verifications_on_expert_id"

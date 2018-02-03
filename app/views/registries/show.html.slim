@@ -1,0 +1,43 @@
+p#notice= notice
+p
+  strong Consecutivo:
+  = @registry.consecutivo
+p
+  strong Folio:
+  = @registry.folio
+p
+  strong Year folio:
+  = @registry.year_folio
+p
+  strong Expedient:
+  = @registry.expedient.expediente
+p
+  strong City:
+  = "#{@registry.city.ciudad}, #{@registry.city.estado}"
+p
+  strong Authority:
+  = @registry.authority.nombre
+p
+  strong Anexos recibidos:
+  = @registry.anexos_recibidos
+p
+  strong Fecha recepcion:
+  = @registry.fecha_recepcion
+p
+  strong Expert:
+  = @registry.expert.nombre
+p
+  strong Fecha entrega:
+  = @registry.fecha_entrega
+p
+  strong Result:
+  = @registry.result.resultado
+p
+  strong Anexos entregados:
+  = @registry.anexos_entregados
+p
+  strong Observaciones:
+  = @registry.observaciones
+= link_to 'Edit', edit_registry_path(@registry)
+| \
+= link_to 'Back', registries_path

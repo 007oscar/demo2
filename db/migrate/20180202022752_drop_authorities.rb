@@ -1,10 +1,9 @@
-class CreateAuthorities < ActiveRecord::Migration[5.1]
+class DropAuthorities < ActiveRecord::Migration[5.0]
   def change
-    create_table :authorities do |t|
+    drop_table :authorities do |t|
       t.string :nombres
       t.string :apellidos
       t.references :title, foreign_key: true
-
       t.timestamps
     end
   end
