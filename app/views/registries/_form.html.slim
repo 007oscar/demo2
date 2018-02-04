@@ -5,24 +5,25 @@
 
   #expediente
     #expediente_lista
-      = f.association :expedient, collection: Expedient.order(:expediente), prompt: 'Escoge un expediente...'
+      = f.association :expedient, collection: Expedient.order(:expediente),label_method: :expediente, prompt: 'Escoge un expediente...'
     = link_to_add_association 'agregar expediente...', f, :expedient
   #ciudad
     #ciudad_lista
-      = f.association :city, collection: City.order(:ciudad), prompt: 'Escoge un ciudad...'
+      = f.association :city, collection: City.order(:ciudad), label_method: lambda{| ciudad | "#{ciudad.ciudad}, #{ciudad.estado}"}, prompt: 'Escoge un ciudad...'
     = link_to_add_association 'agregar ciudad...', f, :city
   #autoridad
     #autoridad_lista
-      = f.association :authority, collection: Authority.order(:nombre), prompt: 'Escoge una autoridad...'
+      = f.association :authority, collection: Authority.order(:nombre), label_method: :nombre, prompt: 'Escoge una autoridad...'
     = link_to_add_association 'agregar autoridad...', f, :authority
   = f.input :anexos_recibidos
   = f.input :fecha_recepcion
-  = f.association :expert, collection: Expert.order(:nombre), prompt: 'Escoge un perito...'
+  #experto
+    = f.input :expert,
+    = f.association :expert, collection: Expert.order(:nombre), label_method: :nombre, prompt: 'Escoge un perito...'
+
   = f.input :fecha_entrega
   #resultado
-    #resultado_lista
-      = f.association :result, collection: Result.order(:resultado), prompt: 'Escoge un resultado...'
-    = link_to_add_association 'agregar resultado...', f, :result
+    = f.association :result, collection: Result.order(:resultado), label_method: :resultado, prompt: 'Escoge un resultado...'
   = f.input :anexos_entregados
   = f.input :observaciones
   = f.submit
