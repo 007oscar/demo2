@@ -1,0 +1,20 @@
+= form_tag(:controller => "reports", :action => "estadistica") do
+  .field
+    label PERITO :
+    select name="perito"
+      = @experts.each do |perito|
+        option value="#{perito.nombre}"
+          = perito.nombre
+  .field
+    label TIPO DE ESTADISTICA :
+    select name="tipo_estadistica"
+      option value="semanal"  SEMANAL
+      option value="mensual"  MENSUAL
+  .field
+    label ESTADISTICA MENSUAL :
+    = date_select "fecha_m", "m", :start_year => Date.today.year - 5 , :end_year => Date.today.year,
+      :discard_day => true, :order => [:month, :year]
+  .field
+    label ESTADISTICA SEMANAL :
+    = date_select "fecha_s", "s", :start_year => Date.today.year - 5, :end_year => Date.today.year, :order => [:day, :month, :year]
+  = submit_tag("Update")

@@ -1,4 +1,17 @@
 Rails.application.routes.draw do
+  post 'reports/estadistica'
+  get 'reports/estadistica1'
+
+  get 'reports/validacion'
+
+  get 'reports/verificacion'
+
+  get 'reports/bitacora'
+
+  get 'reports/caractula1'
+
+  get 'reports/caractula2'
+
   resources :validations
   resources :verifications
   resources :specialties

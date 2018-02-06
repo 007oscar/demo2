@@ -1,0 +1,77 @@
+h1 Reporte de estadistica
+
+- dic_total = @print["MPF"]["DICTAMENES"] + @print["PFM"]["DICTAMENES"] + @print["JDOS"]["DICTAMENES"] + \
+-@print["POL. FED."]["DICTAMENES"] + @print["PGJ EDO."]["DICTAMENES"] + @print["OTROS"]["DICTAMENES"]
+- req_total = @print["MPF"]["REQUERIMIENTOS"] + @print["PFM"]["REQUERIMIENTOS"] + @print["JDOS"]["REQUERIMIENTOS"] + \
+-@print["POL. FED."]["REQUERIMIENTOS"] + @print["PGJ EDO."]["REQUERIMIENTOS"] + @print["OTROS"]["REQUERIMIENTOS"]
+- inf_total = @print["MPF"]["INFORMES"] + @print["PFM"]["INFORMES"] + @print["JDOS"]["INFORMES"] + \
+-@print["POL. FED."]["INFORMES"] + @print["PGJ EDO."]["INFORMES"] + @print["OTROS"]["INFORMES"]
+- peticiones_total = @print["MPF"]["PETICIONES"] + @print["PFM"]["PETICIONES"] + \
+-@print["JDOS"]["PETICIONES"] + @print["POL. FED."]["PETICIONES"] + \
+-@print["PGJ EDO."]["PETICIONES"] + @print["OTROS"]["PETICIONES"]
+table
+  tr
+    th rowspan="2"  Clave
+    th rowspan="2"  Especialidad
+    th rowspan="2"  Siglas
+    th rowspan="2"  SEDE
+    th rowspan="2"  Inicio
+    th colspan="6"  Solicitudes
+    th rowspan="2"  Total a tramitar
+    th colspan="4"  Resultados
+    th rowspan="2"  Total tramitado
+    th rowspan="2"  En tramite
+  tr
+    th MPF
+    th PFM
+    th JDOS
+    th POL. FED.
+    th PGJEDO
+    th OTROS
+    th DICTAMEN
+    th REQUERIMIENTO
+    th INFORME
+    th NOTIFICACION DE CIERRE
+  tr
+    td 13.S.2.13
+    td Inf. y Telecom.
+    td IT
+    td
+    td
+    td
+    td
+    td
+    td
+    td
+    td
+    td
+    td
+    td
+    td
+    td
+  tr
+    td
+    td= @print["PERITO"]
+    td
+    td HERMOSILLO
+    td= @print["INICIO"]
+    td= @print["MPF"]["PETICIONES"]
+    td= @print["PFM"]["PETICIONES"]
+    td= @print["JDOS"]["PETICIONES"]
+    td= @print["POL. FED."]["PETICIONES"]
+    td= @print["PGJ EDO."]["PETICIONES"]
+    td= @print["OTROS"]["PETICIONES"]
+    td= peticiones_total
+    td= dic_total
+    td= req_total
+    td= inf_total
+    td NOTIFICACION DE CIERRE
+    td= dic_total + req_total + inf_total
+    td= peticiones_total - dic_total + req_total + inf_total
+  tr
+    td colspan="16"  OBSERVACIONES
+  tr
+    td colspan="16" = @print["DETENIDOS"]
+  tr
+    td= link_to 'Reporte generado', print_reporte_path
+    td= link_to 'Libro', books_path
