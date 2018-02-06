@@ -2,26 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="10082732-1f9c-43e7-8eb1-78c85468495c" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/views/authorities/index.html.slim" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/views/cities/_form.html.slim" />
+      <change beforePath="$PROJECT_DIR$/.idea/demo2.iml" afterPath="$PROJECT_DIR$/.idea/demo2.iml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/assets/javascripts/registries.coffee" afterPath="$PROJECT_DIR$/app/assets/javascripts/registries.coffee" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/authorities_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/authorities_controller.rb" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/experts_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/experts_controller.rb" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/registries_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/registries_controller.rb" />
-      <change beforePath="$PROJECT_DIR$/app/models/expert.rb" afterPath="$PROJECT_DIR$/app/models/expert.rb" />
-      <change beforePath="$PROJECT_DIR$/app/models/registry.rb" afterPath="$PROJECT_DIR$/app/models/registry.rb" />
-      <change beforePath="$PROJECT_DIR$/app/views/authorities/_form.html.erb" afterPath="$PROJECT_DIR$/app/views/authorities/_form.html.slim" />
-      <change beforePath="$PROJECT_DIR$/app/views/authorities/index.html.erb" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/views/authorities/show.html.erb" afterPath="$PROJECT_DIR$/app/views/authorities/show.html.erb" />
-      <change beforePath="$PROJECT_DIR$/app/views/cities/_form.html.erb" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/app/views/experts/_form.html.slim" afterPath="$PROJECT_DIR$/app/views/experts/_form.html.slim" />
-      <change beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.slim" />
-      <change beforePath="$PROJECT_DIR$/app/views/registries/_form.html.slim" afterPath="$PROJECT_DIR$/app/views/registries/_form.html.slim" />
-      <change beforePath="$PROJECT_DIR$/app/views/registries/index.html.slim" afterPath="$PROJECT_DIR$/app/views/registries/index.html.slim" />
-      <change beforePath="$PROJECT_DIR$/app/views/registries/show.html.slim" afterPath="$PROJECT_DIR$/app/views/registries/show.html.slim" />
-      <change beforePath="$PROJECT_DIR$/app/views/specialties/_form.html.erb" afterPath="$PROJECT_DIR$/app/views/specialties/_form.html.slim" />
-      <change beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
+      <change beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
+      <change beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -37,7 +21,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/demo2@Development__demo2.coverage" NAME="Development: demo2 Coverage Results" MODIFIED="1517867390355" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="demo2" />
+    <SUITE FILE_PATH="coverage/demo2@Development__demo2.coverage" NAME="Development: demo2 Coverage Results" MODIFIED="1517901060030" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="demo2" />
     <SUITE FILE_PATH="coverage/demo3@Development__demo2.coverage" NAME="Development: demo2 Coverage Results" MODIFIED="1516989731544" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="demo2" />
   </component>
   <component name="DatabaseView">
@@ -57,11 +41,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file leaf-file-name="registries_controller.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="registries_controller.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/registries_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="84" column="0" lean-forward="false" selection-start-line="84" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
+            <state relative-caret-position="420">
+              <caret line="70" column="22" lean-forward="false" selection-start-line="70" selection-start-column="22" selection-end-line="70" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Gemfile" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Gemfile">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="652">
+              <caret line="45" column="24" lean-forward="false" selection-start-line="45" selection-start-column="24" selection-end-line="45" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -127,16 +121,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="edit.html.slim" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/registries/edit.html.slim">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="index.html.slim" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/registries/index.html.slim">
           <provider selected="true" editor-type-id="text-editor">
@@ -191,7 +175,6 @@
         <option value="$PROJECT_DIR$/app/models/expedient.rb" />
         <option value="$PROJECT_DIR$/app/models/result.rb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/registries.js" />
-        <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/db/migrate/20180125201622_create_titles.rb" />
         <option value="$PROJECT_DIR$/db/migrate/20180201215122_drop_titles.rb" />
         <option value="$PROJECT_DIR$/db/migrate/20180202021734_remove_nombres_from_authorities.rb" />
@@ -229,6 +212,7 @@
         <option value="$PROJECT_DIR$/app/views/registries/index.html.slim" />
         <option value="$PROJECT_DIR$/app/views/registries/show.html.slim" />
         <option value="$PROJECT_DIR$/app/controllers/registries_controller.rb" />
+        <option value="$PROJECT_DIR$/Gemfile" />
       </list>
     </option>
   </component>
@@ -297,13 +281,6 @@
               <item name="demo2" type="b2602c69:ProjectViewProjectNode" />
               <item name="demo2" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="javascripts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="demo2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="demo2" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="controllers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -311,34 +288,6 @@
               <item name="demo2" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="demo2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="demo2" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="authorities" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="demo2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="demo2" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="experts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="demo2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="demo2" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="layouts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="demo2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="demo2" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="registries" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="demo2" type="b2602c69:ProjectViewProjectNode" />
@@ -515,7 +464,7 @@
       <workItem from="1517681723284" duration="3643000" />
       <workItem from="1517711561137" duration="5289000" />
       <workItem from="1517773804252" duration="13878000" />
-      <workItem from="1517867138367" duration="17515000" />
+      <workItem from="1517867138367" duration="18309000" />
     </task>
     <task id="LOCAL-00001" summary="se aplica bundle install para cargarlo en rubymine">
       <created>1516913632209</created>
@@ -528,7 +477,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="130540000" />
+    <option name="totallyTimeSpent" value="131334000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -541,9 +490,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21106337" sideWeight="0.48959473" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21106337" sideWeight="0.48959473" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32824427" sideWeight="0.490625" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32911393" sideWeight="0.509375" order="7" side_tool="true" content_ui="tabs" />
@@ -679,7 +627,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/views/registries/new.html.erb" />
     <entry file="file://$PROJECT_DIR$/app/models/has_specialty.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="44">
@@ -1043,8 +990,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/registries_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="84" column="0" lean-forward="false" selection-start-line="84" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
+        <state relative-caret-position="420">
+          <caret line="70" column="22" lean-forward="false" selection-start-line="70" selection-start-column="22" selection-end-line="70" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gemfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="652">
+          <caret line="45" column="24" lean-forward="false" selection-start-line="45" selection-start-column="24" selection-end-line="45" selection-end-column="24" />
           <folding />
         </state>
       </provider>
