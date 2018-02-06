@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180202032433) do
+ActiveRecord::Schema.define(version: 20180206043023) do
 
   create_table "authorities", force: :cascade do |t|
     t.string   "nombre"
@@ -41,6 +41,15 @@ ActiveRecord::Schema.define(version: 20180202032433) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "has_experts", force: :cascade do |t|
+    t.integer  "expert_id"
+    t.integer  "registry_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["expert_id"], name: "index_has_experts_on_expert_id"
+    t.index ["registry_id"], name: "index_has_experts_on_registry_id"
+  end
+
   create_table "has_specialties", force: :cascade do |t|
     t.integer  "expert_id"
     t.integer  "specialty_id"
@@ -59,17 +68,17 @@ ActiveRecord::Schema.define(version: 20180202032433) do
     t.integer  "authority_id"
     t.text     "anexos_recibidos"
     t.datetime "fecha_recepcion"
-    t.integer  "expert_id"
     t.datetime "fecha_entrega"
     t.integer  "result_id"
     t.text     "anexos_entregados"
     t.text     "observaciones"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.string   "num_expediente"
     t.index ["authority_id"], name: "index_registries_on_authority_id"
     t.index ["city_id"], name: "index_registries_on_city_id"
     t.index ["expedient_id"], name: "index_registries_on_expedient_id"
-    t.index ["expert_id"], name: "index_registries_on_expert_id"
+    t.index ["id", "folio", "year_folio"], name: "index_registries_on_id_and_folio_and_year_folio", unique: true
     t.index ["result_id"], name: "index_registries_on_result_id"
   end
 

@@ -71,6 +71,6 @@ class ExpertsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def expert_params
-      params.require(:expert).permit(:id, :nombre, specialties_attributes: [:id, :nombre, :_destroy] )
+      params.require(:expert).permit(:id, :nombre, specialty_ids: [], specialty_attributes: [:id, :especialidad, :_destroy])
     end
 end

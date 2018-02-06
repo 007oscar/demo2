@@ -7,12 +7,12 @@ $(document).ready ->
 
   $('#expediente a.add_fields').data('association-insertion-position', 'before').data 'association-insertion-node', 'this'
 
-  $('#expediente').bind 'cocoon:after-insert', ->
+  $('#expediente').on 'cocoon:after-insert', ->
     $('#expediente_lista').hide()
     $('#expediente a.add_fields').hide()
 
 
-  $('#expediente').bind 'cocoon:after-remove', ->
+  $('#expediente').on 'cocoon:after-remove', ->
     $('#expediente_lista').show()
     $('#expediente a.add_fields').show()
 

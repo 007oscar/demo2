@@ -25,7 +25,13 @@ p
   = @registry.fecha_recepcion
 p
   strong Expert:
-  = @registry.expert.nombre
+  - @registry.experts.each do |e|
+    = "#{e.nombre} ["
+    - temp = ""
+    - e.specialties.each do |s|
+      - temp += "#{s.especialidad},"
+    = temp[0..-2] + "]"
+    br
 p
   strong Fecha entrega:
   = @registry.fecha_entrega
@@ -38,6 +44,9 @@ p
 p
   strong Observaciones:
   = @registry.observaciones
+p
+  strong Numero de expediente:
+  = @registry.num_expediente
 = link_to 'Edit', edit_registry_path(@registry)
 | \
 = link_to 'Back', registries_path

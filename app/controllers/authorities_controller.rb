@@ -69,6 +69,6 @@ class AuthoritiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def authority_params
-      params.require(:authority).permit(:nombres, :apellidos, :title_id)
+      params.require(:authority).permit(:nombre, :puesto)
     end
 end

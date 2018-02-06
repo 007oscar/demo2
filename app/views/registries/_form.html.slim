@@ -1,4 +1,5 @@
 = simple_form_for registry do |f|
+  = f.error_notification
   = f.input :consecutivo
   = f.input :folio
   = f.input :year_folio
@@ -18,12 +19,11 @@
   = f.input :anexos_recibidos
   = f.input :fecha_recepcion
   #experto
-    = f.input :expert,
-    = f.association :expert, collection: Expert.order(:nombre), label_method: :nombre, prompt: 'Escoge un perito...'
-
+    = f.association :experts, as: :check_boxes, label_method: :nombre
   = f.input :fecha_entrega
   #resultado
     = f.association :result, collection: Result.order(:resultado), label_method: :resultado, prompt: 'Escoge un resultado...'
   = f.input :anexos_entregados
   = f.input :observaciones
+  = f.input :num_expediente
   = f.submit

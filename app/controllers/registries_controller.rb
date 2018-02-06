@@ -1,20 +1,24 @@
 class RegistriesController < ApplicationController
   before_action :set_registry, only: [:show, :edit, :update, :destroy]
+  after_action :actualizar_registros, only: [:update, :create, :destroy]
 
   # GET /registries
   # GET /registries.json
   def index
-    @registries = Registry.all
+    #@registries = Registry.all
+    @registries =  Registry.all.order(:year_folio, :folio)
   end
 
   # GET /registries/1
   # GET /registries/1.json
   def show
+    #@registry = Registry.order(:year_folio, :folio)
   end
 
   # GET /registries/new
   def new
     @registry = Registry.new
+    @registry.consecutivo = Registry.count + 1
   end
 
   # GET /registries/1/edit
@@ -25,7 +29,9 @@ class RegistriesController < ApplicationController
   # POST /registries.json
   def create
     @registry = Registry.new(registry_params)
-   # raise params.to_yalm
+   # @registry[:registry][:expert_ids]= @registry[:registry][:expert_ids].reject{|e| e.empty?}
+
+    #raise params.to_yalm
     respond_to do |format|
       if @registry.save
         format.html { redirect_to @registry, notice: 'Registry was successfully created.' }
@@ -69,14 +75,39 @@ class RegistriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def registry_params
-      params.require(:registry).permit(:consecutivo, :folio, :year_folio, :expedient_id, :city_id,
-                                       :authority_id, :anexos_recibidos, :fecha_recepcion, :expert_id,
-                                       :fecha_entrega, :result_id, :anexos_entregados, :observaciones,
-                                       expedient_attributes: [:id, :expediente, :hojas, :a_inicial, :a_final, :_destroy],
-                                       city_attributes: [:id, :ciudad, :estado, :_destroy],
+      params.require(:registry).permit(:consecutivo, :folio, :year_folio, :expedient_id, :city_id, :authority_id, :anexos_recibidos, :fecha_recepcion,
+                                       :fecha_entrega, :result_id, :anexos_entregados, :observaciones, :num_expediente, expedient_attributes: [:id, :expediente, :hojas, :a_inicial, :a_final, :_destroy],
+                                       city_attributes: [:id, :ciudad, :estado, :_destroy], expert_ids: [],
                                        authority_attributes: Authority.attribute_names.map(&:to_sym).push(:_destroy),
-                                       expert_attributes: Expert.attribute_names.map(&:to_sym).push(:_destroy),
+                                       experts_attributes: Expert.attribute_names.map(&:to_sym).push(:_destroy),
                                        result_attributes: Result.attribute_names.map(&:to_sym).push(:_destroy))
 
     end
+
+  def actualizar_registros
+    # buscar todos los registros y ordenearlos por Folio
+    contador = 1
+    Registry.update(:consecutivo => '')
+    ultimo = ""
+    Registry.order(:year_folio, :folio).each do | r |
+      if (contador == 1)
+        r.update(:consecutivo => contador, :num_expediente => contador.to_s + "/" + r.year_folio.to_s)
+      else
+        b = Registry.where("expedient_id = ? and consecutivo < ?", r.expedient_id, contador)
+        if b.count > 0
+          r.update(:consecutivo => contador, :num_expediente => b.first.num_expediente)
+        else
+          if ultimo.scan(/\d+/)[-1].to_i == r.year_folio
+            r.update(:consecutivo => contador, :num_expediente => (ultimo.scan(/\d+/)[0].to_i + 1).to_s + "/" + r.year_folio.to_s)
+          else
+            r.update(:consecutivo => contador, :num_expediente => "1/" + r.year_folio.to_s)
+          end
+        end
+      end
+      if ultimo = "" or (ultimo.scan(/\d+/)[-1].to_i < r.num_expediente.scan(/\d+/)[-1].to_i)
+        ultimo = r.num_expediente
+      end
+      contador += 1
+    end
+  end
 end
