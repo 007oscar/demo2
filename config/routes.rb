@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   post 'reports/estadistica'
   get 'reports/estadistica1'
-
+  get 'reports/reporte'
   get 'reports/validacion'
 
   get 'reports/verificacion'

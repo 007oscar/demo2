@@ -75,7 +75,7 @@ class RegistriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def registry_params
-      params.require(:registry).permit(:consecutivo, :folio, :year_folio, :expedient_id, :city_id, :authority_id, :anexos_recibidos, :fecha_recepcion,
+      params.require(:registry).permit(:consecutivo, :folio, :year_folio, :detenido, :expedient_id, :city_id, :authority_id, :anexos_recibidos, :fecha_recepcion,
                                        :fecha_entrega, :result_id, :anexos_entregados, :observaciones, :num_expediente, expedient_attributes: [:id, :expediente, :hojas, :a_inicial, :a_final, :_destroy],
                                        city_attributes: [:id, :ciudad, :estado, :_destroy], expert_ids: [],
                                        authority_attributes: Authority.attribute_names.map(&:to_sym).push(:_destroy),

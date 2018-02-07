@@ -3,7 +3,7 @@
     label PERITO :
     select name="perito"
       = @experts.each do |perito|
-        option value="#{perito.nombre}"
+        option value="#{perito.id}"
           = perito.nombre
   .field
     label TIPO DE ESTADISTICA :

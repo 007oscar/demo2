@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180206043023) do
+ActiveRecord::Schema.define(version: 20180206212312) do
 
   create_table "authorities", force: :cascade do |t|
     t.string   "nombre"
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 20180206043023) do
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.string   "num_expediente"
+    t.boolean  "detenido"
     t.index ["authority_id"], name: "index_registries_on_authority_id"
     t.index ["city_id"], name: "index_registries_on_city_id"
     t.index ["expedient_id"], name: "index_registries_on_expedient_id"

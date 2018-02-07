@@ -1,14 +1,14 @@
 h1 Reporte de estadistica
 
 - dic_total = @print["MPF"]["DICTAMENES"] + @print["PFM"]["DICTAMENES"] + @print["JDOS"]["DICTAMENES"] + \
--@print["POL. FED."]["DICTAMENES"] + @print["PGJ EDO."]["DICTAMENES"] + @print["OTROS"]["DICTAMENES"]
+  @print["POL. FED."]["DICTAMENES"] + @print["PGJ EDO."]["DICTAMENES"] + @print["OTROS"]["DICTAMENES"]
 - req_total = @print["MPF"]["REQUERIMIENTOS"] + @print["PFM"]["REQUERIMIENTOS"] + @print["JDOS"]["REQUERIMIENTOS"] + \
--@print["POL. FED."]["REQUERIMIENTOS"] + @print["PGJ EDO."]["REQUERIMIENTOS"] + @print["OTROS"]["REQUERIMIENTOS"]
+  @print["POL. FED."]["REQUERIMIENTOS"] + @print["PGJ EDO."]["REQUERIMIENTOS"] + @print["OTROS"]["REQUERIMIENTOS"]
 - inf_total = @print["MPF"]["INFORMES"] + @print["PFM"]["INFORMES"] + @print["JDOS"]["INFORMES"] + \
--@print["POL. FED."]["INFORMES"] + @print["PGJ EDO."]["INFORMES"] + @print["OTROS"]["INFORMES"]
+  @print["POL. FED."]["INFORMES"] + @print["PGJ EDO."]["INFORMES"] + @print["OTROS"]["INFORMES"]
 - peticiones_total = @print["MPF"]["PETICIONES"] + @print["PFM"]["PETICIONES"] + \
--@print["JDOS"]["PETICIONES"] + @print["POL. FED."]["PETICIONES"] + \
--@print["PGJ EDO."]["PETICIONES"] + @print["OTROS"]["PETICIONES"]
+  @print["JDOS"]["PETICIONES"] + @print["POL. FED."]["PETICIONES"] + \
+  @print["PGJ EDO."]["PETICIONES"] + @print["OTROS"]["PETICIONES"]
 table
   tr
     th rowspan="2"  Clave
@@ -65,7 +65,7 @@ table
     td= dic_total
     td= req_total
     td= inf_total
-    td NOTIFICACION DE CIERRE
+    td
     td= dic_total + req_total + inf_total
     td= peticiones_total - dic_total + req_total + inf_total
   tr
@@ -73,5 +73,5 @@ table
   tr
     td colspan="16" = @print["DETENIDOS"]
   tr
-    td= link_to 'Reporte generado', print_reporte_path
-    td= link_to 'Libro', books_path
+    td= link_to 'Reporte generado', reports_reporte_path
+    td= link_to 'Registro', registries_path
