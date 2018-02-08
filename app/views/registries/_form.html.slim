@@ -20,7 +20,8 @@
   = f.input :fecha_recepcion
   #experto
     = f.association :experts, as: :check_boxes, label_method: :nombre
-  = f.input :fecha_entrega
+  #fecha
+    = f.input :fecha_entrega, include_blank: true
   #resultado
     = f.association :result, collection: Result.order(:resultado), label_method: :resultado, prompt: 'Escoge un resultado...'
   = f.input :anexos_entregados

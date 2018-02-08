@@ -1,0 +1,12 @@
+
+p#notice= notice
+p
+  strong Registry:
+  = @validation.registry.folio
+p
+  strong Nombres:
+  = @validation.expert.nombre
+
+= link_to 'Edit', edit_validation_path(@validation)
+| \
+= link_to 'Back', validations_path

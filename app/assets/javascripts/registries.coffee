@@ -69,8 +69,6 @@ $(document).ready ->
     $('#resultado_lista').show()
     $('#resultado a.add_fields').show()
 
-  showOption = (value) ->
-    $('#optionHolder option[value="' + value + '"]').appendTo '#selectID'
-
-  hideOption = (value) ->
-    $('select option[value="' + value + '"]').appendTo '#optionHolder'
+  $("input#checkbox").click ->
+    if(this.checked)
+      $("div#fecha").type "datetime"

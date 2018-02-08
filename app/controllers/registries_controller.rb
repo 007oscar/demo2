@@ -85,29 +85,23 @@ class RegistriesController < ApplicationController
     end
 
   def actualizar_registros
-    # buscar todos los registros y ordenearlos por Folio
+    registry = Registry.order(:year_folio, :folio)
     contador = 1
-    Registry.update(:consecutivo => '')
-    ultimo = ""
-    Registry.order(:year_folio, :folio).each do | r |
-      if (contador == 1)
-        r.update(:consecutivo => contador, :num_expediente => contador.to_s + "/" + r.year_folio.to_s)
-      else
-        b = Registry.where("expedient_id = ? and consecutivo < ?", r.expedient_id, contador)
-        if b.count > 0
-          r.update(:consecutivo => contador, :num_expediente => b.first.num_expediente)
-        else
-          if ultimo.scan(/\d+/)[-1].to_i == r.year_folio
-            r.update(:consecutivo => contador, :num_expediente => (ultimo.scan(/\d+/)[0].to_i + 1).to_s + "/" + r.year_folio.to_s)
-          else
-            r.update(:consecutivo => contador, :num_expediente => "1/" + r.year_folio.to_s)
-          end
-        end
+    Registry.update(num_expediente: '')
+    ultimo = "1"
+    for r in (0..registry.count-1)
+      if ultimo == "1"
+        ultimo += "/" + registry[r].year_folio.to_s
+      elsif registry[r].num_expediente == '' and (registry[r].year_folio == ultimo.split("/")[1].to_i)
+        ultimo = (ultimo.split("/")[0].to_i + 1).to_s + "/" + ultimo.split("/")[1]
+      elsif registry[r].num_expediente == '' and (registry[r].year_folio > ultimo.split("/")[1].to_i)
+        ultimo =  "1/" + registry[r].year_folio.to_s
       end
-      if ultimo = "" or (ultimo.scan(/\d+/)[-1].to_i < r.num_expediente.scan(/\d+/)[-1].to_i)
-        ultimo = r.num_expediente
+      if registry[r].num_expediente == ''
+        registry.where(expedient_id: registry[r].expedient_id).update(num_expediente: ultimo)
+        registry.reload  #it is necessary to update the registries during iterations
       end
-      contador += 1
     end
   end
+
 end

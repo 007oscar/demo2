@@ -40,7 +40,7 @@ table
             = temp[0..-2] + "]"
             br
         td= registry.fecha_entrega
-        td= registry.result.resultado
+        td= registry.result.resultado if not registry.result.nil?
         td= registry.anexos_entregados
         td= registry.observaciones
         td= registry.num_expediente

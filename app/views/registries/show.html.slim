@@ -40,7 +40,7 @@ p
   = @registry.fecha_entrega
 p
   strong Result:
-  = @registry.result.resultado
+  = @registry.result.resultado if not @registry.result.nil?
 p
   strong Anexos entregados:
   = @registry.anexos_entregados

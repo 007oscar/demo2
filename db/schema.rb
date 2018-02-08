@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180206212312) do
+ActiveRecord::Schema.define(version: 20180207212044) do
 
   create_table "authorities", force: :cascade do |t|
     t.string   "nombre"
@@ -97,10 +97,11 @@ ActiveRecord::Schema.define(version: 20180206212312) do
 
   create_table "validations", force: :cascade do |t|
     t.integer  "registry_id"
-    t.string   "nombres"
-    t.string   "apellidos"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "expert_id"
+    t.index ["expert_id", "registry_id"], name: "index_validations_on_expert_id_and_registry_id", unique: true
+    t.index ["expert_id"], name: "index_validations_on_expert_id"
     t.index ["registry_id"], name: "index_validations_on_registry_id"
   end
 

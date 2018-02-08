@@ -5,6 +5,7 @@ class Registry < ApplicationRecord
   belongs_to :result
   has_many :has_experts
   has_many :experts, through: :has_experts
+  has_one :validation
 
   #accepts_nested_attributes_for :expedient, :city, :authority, :expert, :result
   accepts_nested_attributes_for :expedient , :reject_if => :all_blank
