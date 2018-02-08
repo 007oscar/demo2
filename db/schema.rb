@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180207212044) do
+ActiveRecord::Schema.define(version: 20180208024006) do
 
   create_table "authorities", force: :cascade do |t|
     t.string   "nombre"
@@ -110,19 +110,20 @@ ActiveRecord::Schema.define(version: 20180207212044) do
     t.datetime "fecha"
     t.integer  "registry_id"
     t.integer  "expedient_id"
-    t.boolean  "incluye_expediente"
-    t.boolean  "coincide_expediente"
-    t.boolean  "incluye_anexos"
-    t.boolean  "coinciden_anexos"
-    t.boolean  "anexos_equipos_de_computo"
-    t.boolean  "anexos_equipo_de_comunicacion"
-    t.boolean  "anexos_material_fotografico"
-    t.boolean  "anexos_disp_alm_elect"
-    t.boolean  "anexos_componentes_electronicos"
-    t.boolean  "otros"
     t.integer  "expert_id"
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+    t.integer  "ncluye_expediente"
+    t.integer  "coincide_expediente"
+    t.integer  "incluye_anexos"
+    t.integer  "coinciden_anexos"
+    t.integer  "anexos_equipos_de_computo"
+    t.integer  "anexos_equipo_de_comunicacion"
+    t.integer  "anexos_material_fotografico"
+    t.integer  "anexos_disp_alm_elect"
+    t.integer  "anexos_componentes_electronicos"
+    t.integer  "otros"
+    t.integer  "incluye_expediente"
     t.index ["city_id"], name: "index_verifications_on_city_id"
     t.index ["expedient_id"], name: "index_verifications_on_expedient_id"
     t.index ["expert_id"], name: "index_verifications_on_expert_id"

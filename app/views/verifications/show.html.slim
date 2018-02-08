@@ -1,0 +1,50 @@
+p#notice= notice
+- r = ["SI","NO","NO APLICA"]
+p
+  strong City:
+  = "#{@verification.city.ciudad}, #{@verification.city.estado}"
+p
+  strong Fecha:
+  = @verification.fecha
+p
+  strong Registry:
+  = @verification.registry.folio
+p
+  strong Expedient:
+  = @verification.expedient.expediente
+p
+  strong Incluye expediente:
+  = r[@verification.incluye_expediente]
+p
+  strong Coincide expediente:
+  = r[@verification.coincide_expediente]
+p
+  strong Incluye anexos:
+  = r[@verification.incluye_anexos]
+p
+  strong Coinciden anexos:
+  = r[@verification.coinciden_anexos]
+p
+  strong Anexos equipos de computo:
+  = r[@verification.anexos_equipos_de_computo]
+p
+  strong Anexos equipo de comunicacion:
+  = r[@verification.anexos_equipo_de_comunicacion]
+p
+  strong Anexos material fotografico:
+  = r[@verification.anexos_material_fotografico]
+p
+  strong Anexos disp alm elect:
+  = r[@verification.anexos_disp_alm_elect]
+p
+  strong Anexos componentes electronicos:
+  = r[@verification.anexos_componentes_electronicos]
+p
+  strong Otros:
+  = r[@verification.otros]
+p
+  strong Verificador:
+  = @verification.expert.nombre
+= link_to 'Edit', edit_verification_path(@verification)
+| |
+= link_to 'Back', verifications_path

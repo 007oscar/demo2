@@ -1,0 +1,22 @@
+= simple_form_for verification do |f|
+  = f.input :city_id do
+    = f.select :city_id,  City.all.map { |c| ["#{c.ciudad}, #{c.estado}", c.id] }
+  = f.input :fecha, as: :date
+  = f.input :registry_id do
+    = f.select :registry_id,  Registry.all.map { |r| ["FOLIO: #{r.folio.to_s}/#{r.year_folio.to_s} --> #{r.expedient.expediente}", r.id] }
+  = f.input :expedient_id do
+    = f.select :expedient_id,  Expedient.all.map { |e| [e.expediente, e.id] }
+  = f.input :incluye_expediente, collection: [["SI", 0],["NO", 1],["NO APLICA", 2]], include_blank: false
+  = f.input :coincide_expediente, collection: [["SI", 0],["NO", 1],["NO APLICA", 2]], include_blank: false
+  = f.input :incluye_anexos, collection: [["SI", 0],["NO", 1],["NO APLICA", 2]], include_blank: false
+  = f.input :coinciden_anexos, collection: [["SI", 0],["NO", 1],["NO APLICA", 2]], include_blank: false
+  = f.input :anexos_equipos_de_computo, collection: [["SI", 0],["NO", 1],["NO APLICA", 2]], include_blank: false
+  = f.input :anexos_equipo_de_comunicacion, collection: [["SI", 0],["NO", 1],["NO APLICA", 2]], include_blank: false
+  = f.input :anexos_material_fotografico, collection: [["SI", 0],["NO", 1],["NO APLICA", 2]], include_blank: false
+  = f.input :anexos_disp_alm_elect, collection: [["SI", 0],["NO", 1],["NO APLICA", 2]], include_blank: false
+  = f.input :anexos_componentes_electronicos, collection: [["SI", 0],["NO", 1],["NO APLICA", 2]], include_blank: false
+  = f.input :otros, collection: [["SI", 0],["NO", 1],["NO APLICA", 2]], include_blank: false
+  = f.input :expert_id do
+    = f.select :expert_id,  Expert.all.map { |e| [e.nombre, e.id] }
+  br
+  = f.submit
