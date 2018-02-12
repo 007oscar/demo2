@@ -18,7 +18,14 @@ class RegistriesController < ApplicationController
   # GET /registries/new
   def new
     @registry = Registry.new
-    @registry.consecutivo = Registry.count + 1
+    if Registry.count < 1
+      @registry.consecutivo = 1
+    elsif Registry.last.consecutivo.nil?
+            @registry.consecutivo = 1
+    else
+      @registry.consecutivo = Registry.last.consecutivo + 1
+    end
+
   end
 
   # GET /registries/1/edit
@@ -92,19 +99,45 @@ class RegistriesController < ApplicationController
     contador = 1
     Registry.update(num_expediente: '')
     ultimo = "1"
-    for r in (0..registry.count-1)
+
+    registry.each do |r|
+      # contador += 1
+
       if ultimo == "1"
-        ultimo += "/" + registry[r].year_folio.to_s
-      elsif registry[r].num_expediente == '' and (registry[r].year_folio == ultimo.split("/")[1].to_i)
-        ultimo = (ultimo.split("/")[0].to_i + 1).to_s + "/" + ultimo.split("/")[1]
-      elsif registry[r].num_expediente == '' and (registry[r].year_folio > ultimo.split("/")[1].to_i)
-        ultimo =  "1/" + registry[r].year_folio.to_s
+        ultimo += "/" + r.year_folio.to_s
+      else
+        ultimo = Expedient.find(r.expedient).registries.where.not(:num_expediente => '').first.num_expediente
+        if ultimo == ""
+          if (r.year_folio == ultimo.split("/")[1].to_i)
+            ultimo = (ultimo.split("/")[0].to_i + 1).to_s + "/" + ultimo.split("/")[1]
+          else
+            contador = 1
+            ultimo =  "1/" + r.year_folio.to_s
+          end
+        elsif r.year_folio > ultimo.split("/")[1].to_i
+            contador = 1   #nuevo año, nuevo consecutivo
+        end
       end
-      if registry[r].num_expediente == ''
-        registry.where(expedient_id: registry[r].expedient_id).update(num_expediente: ultimo)
-        registry.reload  #it is necessary to update the registries during iterations
-      end
+      r.update( consecutivo: contador, num_expediente: ultimo )
+      contador += 1
     end
+
+    # for r in (0..registry.count-1)
+    #   contador += 1
+    #   # r.update(consecutivo: contador)
+    #   if ultimo == "1"
+    #     ultimo += "/" + registry[r].year_folio.to_s
+    #   elsif registry[r].num_expediente == '' and (registry[r].year_folio == ultimo.split("/")[1].to_i)
+    #     ultimo = (ultimo.split("/")[0].to_i + 1).to_s + "/" + ultimo.split("/")[1]
+    #   elsif registry[r].num_expediente == '' and (registry[r].year_folio > ultimo.split("/")[1].to_i)
+    #     contador = 1
+    #     ultimo =  "1/" + registry[r].year_folio.to_s
+    #   end
+    #   if registry[r].num_expediente == ''
+    #     registry.where(expedient_id: registry[r].expedient_id).update(num_expediente: ultimo)
+    #     registry.reload  #it is necessary to update the registries during iterations
+    #   end
+    # end
   end
 
 end

@@ -45,7 +45,11 @@
     <div class="b-izq">
       1. ¿El Producto cumple con los requisitos del punto 5.2.2 del Instructivo de Trabajo <b>(IT-CE-IT-01)</b>?
     </div>
-    <div class="b-izq b-der b-aba  marca-x centrar"> <%= "X" if @registry.result.resultado == "INFORME" %></div>
+    <div class="b-izq b-der b-aba  marca-x centrar">
+      <% if not @registry.result.nil? and @registry == "INFORME" %>
+            <%= "X" %>
+      <% end %>
+    </div>
     <div class="b-aba b-der  marca-x centrar"></div>
     <div class="b-izq b-aba">
       <b>OBSERVACIONES:</b>
