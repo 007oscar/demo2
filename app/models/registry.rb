@@ -8,7 +8,7 @@ class Registry < ApplicationRecord
   has_one :validation
 
   #accepts_nested_attributes_for :expedient, :city, :authority, :expert, :result
-  accepts_nested_attributes_for :expedient , :reject_if => :all_blank
+  accepts_nested_attributes_for :expedient
   accepts_nested_attributes_for :city , :reject_if => :all_blank
   accepts_nested_attributes_for :authority , :reject_if => :all_blank
   accepts_nested_attributes_for :experts , :reject_if => :all_blank
@@ -20,6 +20,6 @@ class Registry < ApplicationRecord
 
   validates :folio, presence: true
   validates :year_folio, presence: true
-  validates :expedient_id, presence: true
+  # validates :expedient_id, presence: true
 
 end

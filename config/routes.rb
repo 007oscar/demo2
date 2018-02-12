@@ -2,16 +2,20 @@ Rails.application.routes.draw do
   post 'reports/estadistica'
   get 'reports/estadistica1'
   get 'reports/reporte'
-  get 'reports/validacion'
+  get 'reports/:id/validacion', to: 'reports#validacion', as: 'reports_validacion'
+  get 'reports/:id/verificacion', to: 'reports#verificacion', as: 'reports_verificacion'
+  get 'reports/:id/caractula1', to: 'reports#caractula1', as: 'reports_caractula1'
+  get 'reports/:id/caractula2', to: 'reports#caractula2', as: 'reports_caractula2'
 
   get 'reports/verificacion'
-
+  # get 'reports/validacion/:id'
   get 'reports/bitacora'
+  post 'reports/bitacora1'
+  # get 'reports/caractula1'
 
-  get 'reports/caractula1'
+  # get 'reports/caractula2'
 
-  get 'reports/caractula2'
-
+  # resources :reports
   resources :validations
   resources :verifications
   resources :specialties

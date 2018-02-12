@@ -94,18 +94,66 @@ class ReportsController < ApplicationController
 
 
   def validacion
+    @registry = Registry.find(params[:id])
+    # @validacion = @registry.validation.expert.nombre
   end
 
   def verificacion
+    @verificacion = Verification.find(params[:id])
   end
 
   def bitacora
+    @experts = Expert.all
   end
 
+  def bitacora1
+    @registries = Expert.find(params[:perito]).registries.where("fecha_recepcion between ? and ?",  \
+                                     Date.civil(params["fecha_i"]["i(1i)"].to_i, params["fecha_i"]["i(2i)"].to_i, params["fecha_i"]["i(3i)"].to_i), \
+                                     Date.civil(params["fecha_f"]["f(1i)"].to_i, params["fecha_f"]["f(2i)"].to_i, params["fecha_f"]["f(3i)"].to_i))
+    @expert = Expert.find(params[:perito])
+  end
   def caractula1
+    @registries = Expedient.find(params[:id]).registries
+    expertos = Expert.joins(:registries).where('registries.num_expediente = ?', @registries.first.num_expediente)
+    if @registries.count > 2
+      @folios = @registries.collect{|r| "#{r.folio}/#{r.year_folio}"}[0..-2].join(', ') + " Y " + @registries.collect{|r| "#{r.folio}/#{r.year_folio}"}[-1]
+    elsif @registries.count > 1
+      @folios = @registries.collect{|r| "#{r.folio}/#{r.year_folio}"}.join(' Y ')
+    else
+      @folios = "#{@registries.first.folio}/#{@registries.first.year_folio}"
+    end
+
+    @especialidades = expertos.collect{|e| e.specialties}.uniq.collect{|e| e.first.especialidad}.uniq
+    if @especialidades.count > 2
+      @especialidades = @especialidades[0..-2].join(', ') + " Y " + @especialidades[-1] #expertos.collect{|e| e.specialties}.uniq.collect{|e| e.first.especialidad}[0..-2].join(', ').join(' y ')
+    elsif @especialidades.count > 1
+      @especialidades = @especialidades.join(' Y ')
+    else
+      @especialidades = @especialidades.join('')
+    end
+
+
   end
 
   def caractula2
+    @registries = Expedient.find(params[:id]).registries
+    expertos = Expert.joins(:registries).where('registries.num_expediente = ?', @registries.first.num_expediente)
+    if @registries.count > 2
+      @folios = @registries.collect{|r| "#{r.folio}/#{r.year_folio}"}[0..-2].join(', ') + " Y " + @registries.collect{|r| "#{r.folio}/#{r.year_folio}"}[-1]
+    elsif @registries.count > 1
+      @folios = @registries.collect{|r| "#{r.folio}/#{r.year_folio}"}.join(' Y ')
+    else
+      @folios = "#{@registries.first.folio}/#{@registries.first.year_folio}"
+    end
+
+    @especialidades = expertos.collect{|e| e.specialties}.uniq.collect{|e| e.first.especialidad}.uniq
+    if @especialidades.count > 2
+      @especialidades = @especialidades[0..-2].join(', ') + " Y " + @especialidades[-1] #expertos.collect{|e| e.specialties}.uniq.collect{|e| e.first.especialidad}[0..-2].join(', ').join(' y ')
+    elsif @especialidades.count > 1
+      @especialidades = @especialidades.join(' Y ')
+    else
+      @especialidades = @especialidades.join('')
+    end
   end
 
   def semanal_total(autoridad)

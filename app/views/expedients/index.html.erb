@@ -7,10 +7,7 @@
     <tr>
       <th>Expediente</th>
       <th>Hojas</th>
-      <th>A inicial</th>
-      <th>A final</th>
-      <th>Hojas</th>
-      <th colspan="3"></th>
+      <th colspan="5"></th>
     </tr>
   </thead>
 
@@ -19,11 +16,10 @@
       <tr>
         <td><%= expedient.expediente %></td>
         <td><%= expedient.hojas %></td>
-        <td><%= expedient.a_inicial %></td>
-        <td><%= expedient.a_final %></td>
-        <td><%= expedient.hojas %></td>
         <td><%= link_to 'Show', expedient %></td>
         <td><%= link_to 'Edit', edit_expedient_path(expedient) %></td>
+        <td><%= (link_to 'Caractula 1', reports_caractula1_path(expedient)) if expedient.registries.count > 0 %></td>
+        <td><%= (link_to 'Caractula 2', reports_caractula2_path(expedient)) if expedient.registries.count > 0 %></td>
         <td><%= link_to 'Destroy', expedient, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

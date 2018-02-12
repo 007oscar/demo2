@@ -1,6 +1,6 @@
 = simple_form_for validation do |f|
   = f.input :registry_id, error: "SOLO DEBE HABER UNA VALIDADCION POR EXPEDIENTE" do
-    = f.select :registry_id, Registry.all.map { |r| ["FOLIO: #{r.folio.to_s}/#{r.year_folio.to_s} --> #{r.expedient.expediente}", r.id] }
+    = f.select :registry_id, Registry.joins(:result).where("resultado is not ?", "NOTIFICACION").map { |r| ["FOLIO: #{r.folio.to_s}/#{r.year_folio.to_s} --> #{r.expedient.expediente}", r.id] }
   = f.input :expert_id, error: "SOLO DEBE HABER UNA VALIDADCION POR EXPEDIENTE" do
     = f.select :expert_id, Expert.all.map {|e| [e.nombre, e.id]}
   = f.submit

@@ -25,7 +25,10 @@ table
         td= registry.consecutivo
         td= registry.folio
         td= registry.year_folio
-        td= registry.detenido
+        - if registry.detenido
+          td= "SI"
+        - else
+          td= "NO"
         td= registry.expedient.expediente
         td= registry.city.ciudad
         td= registry.authority.nombre

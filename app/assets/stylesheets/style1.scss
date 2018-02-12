@@ -1,0 +1,279 @@
+.contenedor{
+  margin: auto;
+  /* padding: 20px; */
+  display: grid;
+  font-family: "Soberana Sans regular";
+  font-size: 10pt;
+  width: 18.5cm;
+}
+.contenedor-cara2 div p{
+  margin: 0;
+  padding: 0
+}
+img {
+  width: 5.8cm;
+  height: 1.6cm;
+  /* padding-left: 10px; */
+  padding-top: 20px;
+}
+.l25{
+  font-size: 25px;
+}
+.img-caractula1{
+  width: 9.6cm;
+  height: 3cm;
+}
+.l11{
+  font-size: 11px;
+}
+.l15{
+  font-size: 15px;
+}
+.l9 {
+  font-size: 9px;
+}
+.l10 {
+  font-size: 10px;
+}
+
+.cuadro1{
+  display: grid;
+  grid-template-columns: 6.5cm 12cm;
+  grid-template-rows:3cm;
+  border: 1px black solid;
+  text-align: center;
+}
+.cuadro1-caractula1{
+  display: grid;
+  grid-template-columns: 5cm 2cm 11.5cm;
+  /* grid-row-gap: 0; */
+}
+.cuadro2-caractula1{
+  display: grid;
+  width: 18.5;
+  margin: 0;
+  padding: 0;
+  grid-template-columns: 11cm 1cm 1cm 1cm 1cm 1cm 2.5cm;
+}
+.cuadro3-caractula1{
+  display: grid;
+  grid-template-columns: auto 3cm 1.5cm auto 3cm;
+  align-items: center;
+}
+.cuadro4-caractula1{
+  display: grid;
+  grid-template-columns: repeat(12, auto);
+}
+
+.cuadro5-caractula1{
+  display: grid;
+  /* width: 18.5cm; */
+  grid-template-columns: auto 1cm auto;
+}
+.cuadro5-1-caractula1{
+  display: grid;
+  grid-template-columns: auto auto 1.5cm;
+
+}
+
+
+.span-6-12{
+    grid-column: 6 / 13;
+}
+
+.padding-5{
+  padding: 5px;
+}
+.span-1-17{
+  grid-column: 1 / span 17;
+}
+.span-8-17{
+  grid-column: 8 / span 17;
+}
+.span-18{
+  grid-column: 1 / span 8;
+}
+.span-15{
+  grid-column: 1 / span 5;
+}
+.span-18{
+  grid-column: 1 / span 8;
+}
+.contenedor-cara2 img{
+  position: relative;
+  width: auto;
+  height: auto;
+}
+.cuadro-titulo{
+  display: grid;
+  width: 18.5cm;
+  grid-template-columns: 100%;
+  background-color: #e0e0e0;
+}
+
+.cuadro-bloque{
+  display: grid;
+  width: 18.5cm;
+  grid-template-columns: 100%;
+  /* background-color: #e0e0e0; */
+}
+
+.text{
+  top: 520px;
+  position: absolute;
+}
+.contenedor-Caractula{
+  height: 25cm;
+  padding: 12px;
+  border: 2px black;
+  border-style: double;
+
+}
+.c-gris{
+  background-color: #e0e0e0;
+
+}
+.sin-bordes{
+  border: 0;
+}
+.cuadro2{
+  display: grid;
+  grid-template-columns: 9cm 9.5cm;
+  /* border: 1px black solid; */
+}
+.cuadro3{
+  display: grid;
+  grid-template-columns: 16.5cm 1cm 1cm;
+  /* border: 1px black solid; */
+}
+.cuadro4{
+  display: grid;
+  grid-template-columns: 15.5cm 1.5cm 1.5cm;
+  grid-template-rows: cm;
+}
+.subrayado{
+  text-decoration: underline;
+}
+.titulo1{
+  margin: 10px 0 0 5px;
+}
+.span-1{
+  grid-column: 1 / span 1;
+}
+.span-2{
+  grid-column: 1 / span 2;
+}
+.span-3{
+  grid-column: 1 / span 3;
+}
+.span-22{
+  grid-column: 2 / span 2;
+}
+.area34{
+  margin: 20px;
+  grid-area: 13 / 1 / span 14 / span 3;
+}
+.span-t1{
+  grid-row: 2 / span 2;
+  text-align: center;
+  padding-top: 10px;
+}
+.bo {
+  display: grid;
+  border: 1px black solid;
+}
+.titulo2{
+  grid-column: 1 / span 3;
+}
+.titulo3{
+  padding: 30px;
+  line-height: 20px;
+}
+.interlineado{
+  line-height: 20px;
+}
+.no-pad {
+  padding: 0;
+  margin: 0
+}
+.b-izq{
+  border-left: 1px black solid;
+}
+.b-der{
+  border-right: 1px black solid;
+}
+.b-arr{
+  border-top: 1px black solid;
+}
+.b-aba{
+  border-bottom: 1px black solid;
+}
+.b-izq1{
+  border-left: 3px black solid;
+}
+.b-der1{
+  border-right: 3px black solid;
+}
+.b-arr1{
+  border-top: 3px black solid;
+}
+.b-aba1{
+  border-bottom: 3px black solid;
+}
+.firma {
+  padding-top: 30px;
+  display: grid;
+  grid-template-columns: 25% 50% 25%;
+  /* grid-column: 2; */
+}
+.firma p{
+  grid-column: 2;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+.centro-firma{
+  grid-column: 2;
+  text-align: center;
+}
+.centrar{
+  text-align: center;
+  padding-left: 0;
+}
+.centrar-margen{
+  text-align: center;
+  margin: 5px;
+}
+.marca-x{
+  font-size: 20px;
+  font-weight: bold;
+  /* padding: 5px; */
+}
+.alin-izq{
+  text-align: left;
+}
+.alin-der{
+  text-align: right;
+}
+
+.footer{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding-top: 170px;
+}
+.footer-validacion{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding-top: 2px;
+}
+.cuadro-6{
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+}
+.cuadro-7{
+  display: grid;
+  grid-template-columns: repeat(7, auto);
+}
+.alin-jus{
+  text-align: justify;
+}

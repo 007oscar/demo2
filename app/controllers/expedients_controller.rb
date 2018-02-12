@@ -71,7 +71,6 @@ class ExpedientsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def expedient_params
-      params.require(:expedient).permit(:expediente, :hojas, :a_inicial, :a_final, :hojas,
-                                        registries_attributes: Registry.attribute_names.map(&:to_sym).push(:_destroy))
+      params.require(:expedient).permit(:expediente, :hojas, :a_inicial, :a_final, :hojas)
     end
 end

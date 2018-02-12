@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Caractula 1</title>
+</head>
+<body>
+<div class="contenedor b-izq1 b-arr1 b-der1 b-aba1 padding-5">
+  <div class="cuadro1-caractula1 l11 interlineado">
+    <div class="span-3 alin-izq">
+      <%= image_tag "logo.png" %>
+    </div>
+    <div class="">
+      FONDO
+    </div>
+    <div class="span-22 b-aba1">
+      PROCURADURÍA GENERAL DE LA REPÚBLICA
+    </div>
+    <div class="">
+      UNIDAD ADMINISTRATIVA
+    </div>
+    <div class="span-22 b-aba1">
+      COORDINACIÓN GENERAL DE SERVICIOS PERICIALES
+    </div>
+    <div class="">
+      ÁREA RESPONSABLE
+    </div>
+    <div class="span-22 b-aba1">
+      COORDINACIÓN DE SERVICIOS PERICIALES EN EL ESTADO DE SONORA
+    </div>
+    <div class="span-2">
+      RESPONSABLE DEL CONTROL DE EXPEDIENTES
+    </div>
+    <div class="b-aba1">
+      ANGÉLICA YECENIA SANDOVAL BALLESTEROS
+    </div>
+    <!--  -->
+    <div class="span-2">
+      CLAVE Y NOMBRE DE LA SECCIÓN
+    </div>
+    <div class="b-aba1">
+      13.S SERVICIOS PERICIALES
+    </div>
+    <div class="span-2">
+      CLAVE Y NOMBRE DELA SERIE
+    </div>
+    <div class="b-aba1">
+      13S.2 DICTÁMENES
+    </div>
+    <div class="span-2">
+      CLAVE Y NOMBRE DE LA SUBSERIE
+    </div>
+    <div class="b-aba1">
+      13S.2.	13 INFORMÁTICA Y TELECOMUNICACIONES
+    </div>
+    <div class="span-2">
+      CLAVE Y NOMBRE DEL EXPEDIENTE
+    </div>
+    <div class="l15 centrar b-izq1 b-der1 b-aba1">
+      <b>13S.2.13/CGSP-CE-SON-HER-<%= "#{@registries.first.year_folio.to_s}/-#{@registries.first.num_expediente.split('/')[0]}"%></b>
+    </div>
+  </div>
+  <div class="cuadro-titulo">
+    <div class="centrar-margen">
+      <b class="">ACCESO</b>
+    </div>
+  </div>
+  <div class="cuadro-bloque">
+    <div class="cuadro2-caractula1 padding-5 bo">
+      <div><b>PÚBLICO</b></div>
+      <div><b>SI</b> </div>
+      <div class="b-aba centrar"><b></b> </div>
+      <div> </div>
+      <div ><b>NO</b> </div>
+      <div class="b-aba centrar" ><b>X </b></div>
+      <div > </div>
+      <!-- <p></p> -->
+
+      <div><b>INFORMACIÓN RESERVADA</b></div>
+      <div><b>SI</b> </div>
+      <div class="b-aba centrar"><b>X</b> </div>
+      <div> </div>
+      <div><b>NO</b> </div>
+      <div class="b-aba centrar"><b> </b></div>
+      <div> </div>
+      <!-- <p></p> -->
+
+      <div><b>INFORMACIÓN CONFIDENCIAL</b></div>
+      <div><b>SI</b> </div>
+      <div class="b-aba centrar"><b>X</b> </div>
+      <div> </div>
+      <div><b>NO</b> </div>
+      <div class="b-aba centrar"><b> </b></div>
+      <div> </div>
+      <!-- <p></p> -->
+
+      <div><b>RESTRINGIDO DURANTE SU VIGENCIA</b></div>
+      <div><b>SI</b> </div>
+      <div class="b-aba centrar"><b>X</b> </div>
+      <div> </div>
+      <div><b>NO</b> </div>
+      <div class="b-aba centrar"><b> </b></div>
+      <div> </div>
+      <!-- <p></p> -->
+
+
+    </div>
+
+  </div>
+  <div class="cuadro-titulo">
+    <div class="centrar-margen">
+      <b class="">RESUMEN DEL CONTENIDO</b>
+    </div>
+  </div>
+  <div class="cuadro-bloque">
+    <div class="padding-5 bo alin-jus">
+      <p>INTERVENCIÓN PERICIAL DE LA ESPECIALIDAD DE:  <%= @especialidades%>.
+        FOLIO(S): <%= @folios %>, EXPEDIENTE INTERNO:<%= @registries.first.num_expediente.split('/')[0] %>,
+        AÑO: <%= @registries.first.num_expediente.split('/')[1] %> . <br>
+        NÚMERO DE AVERIGUACIÓN PREVIA, PROCESO U OFICIO: <%= @registries.first.expedient.expediente %>. <br>
+        AUTORIDAD SOLICITANTE: <%= @registries.first.authority.nombre  %>.
+      </p>
+    </div>
+  </div>
+
+  <div class="cuadro-titulo">
+    <div class="centrar-margen">
+      <b class="">FECHAS EXTREMAS</b>
+    </div>
+  </div>
+
+  <div class="cuadro-bloque">
+    <div class="cuadro3-caractula1  bo padding-5">
+      <div class="">
+        AÑO DE APERTURA EXPEDIENTE:
+      </div>
+      <div class="l25 bo centrar padding-5">
+        <b><%= @registries.first.year_folio.to_s %></b>
+      </div>
+      <div>
+      </div>
+      <div class="">
+        AÑO DE CIERRE EXPEDIENTE:
+      </div>
+      <div class="l25 bo centrar padding-5">
+        <% if @registries.last.fecha_entrega.nil? %>
+          <b><%= @registries.last.year_folio.to_s %></b>
+        <% else %>
+         <b> <%= @registries.last.fecha_entrega.year.to_s  %></b>
+        <% end %>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="cuadro-titulo">
+    <div class="centrar-margen">
+      <b class="">FORMATO Ó SOPORTE</b>
+    </div>
+  </div>
+
+  <div class="cuadro-bloque">
+    <div class="cuadro4-caractula1 padding-5 bo">
+      <div class="centrar">PAPEL</div>
+      <div class="b-aba centrar">X</div>
+      <div class="centrar">FOTOGRAFIAS</div>
+      <div class="b-aba centrar"></div>
+      <div class="centrar">LIBROS</div>
+      <div class="b-aba centrar"></div>
+      <div class="centrar">DISQUETES</div>
+      <div class="b-aba centrar"></div>
+      <div class="centrar">CD ROM</div>
+      <div class="b-aba centrar"></div>
+      <div class="centrar">ENGARGOLADO</div>
+      <div class="b-aba centrar"></div>
+      <div class="centrar">VIDEO</div>
+      <div class="b-aba centrar"></div>
+      <div class="centrar">OTRO(S)</div>
+      <div class="b-aba centrar"></div>
+      <div class="centrar">DESCUBRIR</div>
+      <div class="b-aba centrar span-6-12"></div>
+    </div>
+
+  </div>
+  <div class="cuadro5-caractula1">
+    <div class="c-gris centrar-margen">
+      <b>VALOR DOCUMENTAL</b>
+    </div>
+    <div></div>
+    <div class="c-gris centrar-margen">
+      <b>CARÁCTER FUNCIONAL</b>
+    </div>
+    <div class="cuadro5-1-caractula1 padding-5 bo">
+      <div><b>ADMINISTRATIVO</b></div>
+      <div class="b-aba centrar"></div>
+      <div></div>
+      <div><b>LEGAL</b></div>
+      <div class="b-aba centrar"><b>X</b></div>
+      <div></div>
+      <div><b>CONTABLE</b></div>
+      <div class="b-aba centrar"><b></b></div>
+      <div></div>
+    </div>
+    <div></div>
+    <div class="cuadro5-1-caractula1 padding-5 bo">
+      <div><b>TÉCNICO SUSTANTIVO</b></div>
+      <div class="b-aba centrar"> X </div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div><b>DE GESTIÓN INTERNA</b></div>
+      <div class="b-aba centrar"><b></b></div>
+      <div></div>
+    </div>
+
+    <div class="c-gris centrar-margen">
+      <b>PLAZO DE CONSERVACIÓN</b>
+    </div>
+    <div></div>
+    <div class="c-gris centrar-margen">
+      <b>CONFORMACIÓN</b>
+    </div>
+    <div class="cuadro5-1-caractula1 padding-5 bo">
+      <div><b>VIGENCIA COMPLETA</b></div>
+      <div class="b-aba centrar"></div>
+      <div>AÑOS</div>
+      <div><b>ARCHIVO EN TRÁMITE</b></div>
+      <div class="b-aba centrar"><b>X</b></div>
+      <div>AÑOS</div>
+      <div><b>ARCHIVO DE CONCENTRACIÓN</b></div>
+      <div class="b-aba centrar"><b></b></div>
+      <div>AÑOS</div>
+    </div>
+    <div></div>
+    <div class="cuadro5-1-caractula1 padding-5 bo">
+      <div><b>NÚMERO DE LEGAJOS</b></div>
+      <div class="b-aba centrar">1</div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div><b>NÚMERO DE FOJAS</b></div>
+      <div class="b-aba centrar"><b><%= @registries.first.expedient.hojas.to_s %></b></div>
+      <div></div>
+    </div>
+  </div>
+
+  <br><br>
+
+</div>
+</body>
+</html>

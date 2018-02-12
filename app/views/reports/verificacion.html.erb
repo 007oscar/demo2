@@ -1,0 +1,90 @@
+<% v = ["X","N","NA"] %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>verificación</title>
+
+  </head>
+  <body>
+    <div class="contenedor">
+      <div class="cuadro1">
+        <div><%= image_tag "logo.png" %></div>
+        <div class="b-izq">Anexo 5<br>
+          <b>AGENCIA DE INVESTIGACIÓN CRIMINAL</b><br>
+          <b>Coordinación General de Servicios Periciales</b><br>
+          Coordinación Estatal de Servicios Periciales en Sonora<br>
+          HOJA DE VALIDACIÓN Y VERIFICACIÓN<br>
+          (Requisito 8.2.4 Seguimiento y Medición del Producto)
+        </div>
+      </div>
+
+      <div class="cuadro2">
+        <p class="span-2 titulo1 centrar"><b>ESPECIALIDAD DE INFORMÁTICA Y TELECOMUNICACCIONES</b><br><br></p>
+        <div>No. de folio
+          <p class="subrayado"><%= "#{@verificacion.registry.folio}/#{ @verificacion.registry.year_folio}" %></p>
+        </div>
+        <div>Lugar y Fecha:
+          <p class="subrayado"><%= "#{@verificacion.city.ciudad}/#{ @verificacion.city.estado}, #{@verificacion.fecha}" %></p>
+        </div>
+        <div class="span-2">No. de A.P., Carpeta de Investigación, etc.
+          <p class="subrayado"><%=@verificacion.registry.expedient.expediente %></p>
+        </div>
+      </div>
+
+      <div class="cuadro4">
+        <div class="span-3 ">
+          <p>Marque con una (<b>X</b>) en la columna según corresponda, escriba (<b>NA</b>) cuando no aplique	</p>
+          <br>
+        </div>
+        <div class="centrar bo"><b>ELEMENTOS A VERIFICAR</b></div> <div class="centrar b-aba b-arr b-der"><b>SI</b></div> <div class="centrar b-arr b-der b-aba"><b>NO</b></div>
+        <div class="b-aba b-der b-izq">La solicitud Ministerial, Judicial u otra. Incluye Expediente original y/o copia.</div>
+        <div class="centrar b-aba b-der"><b><%= v[@verificacion.incluye_expediente] if(@verificacion.incluye_expediente==0 or @verificacion.incluye_expediente==2) %></b></div>
+        <div class="centrar b-aba b-der"><b><%= v[@verificacion.incluye_expediente] if(@verificacion.incluye_expediente==1)%></b></div>
+        <div class="b-aba b-der b-izq">El número de expediente original y/o copia coincide con el número de la solicitud original.</div>
+        <div class="centrar b-aba b-der"><b><%= v[@verificacion.coincide_expediente] if(@verificacion.coincide_expediente==0 or @verificacion.coincide_expediente==2) %></b></div>
+        <div class="centrar b-aba b-der"><b><%= v[@verificacion.coincide_expediente] if(@verificacion.coincide_expediente==1)%></b></div>
+        <div class="b-aba b-der b-izq">La solicitud Ministerial, Judicial u otra. Incluye Anexos.</div>
+        <div class="centrar b-aba b-der"><b><%= v[@verificacion.incluye_anexos] if(@verificacion.incluye_anexos==0 or @verificacion.incluye_anexos==2) %></b></div>
+        <div class="centrar b-aba b-der"><b><%= v[@verificacion.incluye_anexos] if(@verificacion.incluye_anexos==1)%></b></div>
+        <div class="b-aba b-der b-izq">Los anexos coinciden con lo descrito en la solicitud origina.</div>
+        <div class="centrar b-aba b-der"><b><%= v[@verificacion.coinciden_anexos] if(@verificacion.coinciden_anexos==0 or @verificacion.coinciden_anexos==2) %></b></div>
+        <div class="centrar b-aba b-der"><b><%= v[@verificacion.coinciden_anexos] if(@verificacion.coinciden_anexos==1)%></b></div>
+        <div class="b-aba b-der b-izq">Los anexos se componen de equipo de cómputo (CPU, Monitores, Scanners, videojuegos, etc.).</div>
+        <div class="centrar b-aba b-der"><b><%= v[@verificacion.anexos_equipos_de_computo] if(@verificacion.anexos_equipos_de_computo==0 or @verificacion.anexos_equipos_de_computo==2) %></b></div>
+        <div class="centrar b-aba b-der"><b><%= v[@verificacion.anexos_equipos_de_computo] if(@verificacion.anexos_equipos_de_computo==1)%></b></div>
+        <div class="b-aba b-der b-izq">Los anexos se componen de equipo de comunicación (teléfonos, radio comunicadores, agendas electrónicas, antenas).</div>
+        <div class="centrar b-aba b-der"><b><%= v[@verificacion.anexos_equipo_de_comunicacion] if(@verificacion.anexos_equipo_de_comunicacion==0 or @verificacion.anexos_equipo_de_comunicacion==2) %></b></div>
+        <div class="centrar b-aba b-der"><b><%= v[@verificacion.anexos_equipo_de_comunicacion] if(@verificacion.anexos_equipo_de_comunicacion==1)%></b></div>
+        <div class="b-aba b-der b-izq">Los anexos se componen de material fotográfico.</div>
+        <div class="centrar b-aba b-der"><b><%= v[@verificacion.anexos_material_fotografico] if(@verificacion.anexos_material_fotografico==0 or @verificacion.anexos_material_fotografico==2) %></b></div>
+        <div class="centrar b-aba b-der"><b><%= v[@verificacion.anexos_material_fotografico] if(@verificacion.anexos_material_fotografico==1)%></b></div>
+        <div class="b-aba b-der b-izq">Los anexos se componen de dispositivos de almacenamiento electrónico o magnético (3½, CDs, cartuchos de cinta magnética, memoria electrónica, etc.).</div>
+        <div class="centrar b-aba b-der"><b><%= v[@verificacion.anexos_disp_alm_elect] if(@verificacion.anexos_disp_alm_elect==0 or @verificacion.anexos_disp_alm_elect==2) %></b></div>
+        <div class="centrar b-aba b-der"><b><%= v[@verificacion.anexos_disp_alm_elect] if(@verificacion.anexos_disp_alm_elect==1)%></b></div>
+        <div class="b-aba b-der b-izq">Los anexos se componen de dispositivos electrónicos.</div>
+        <div class="centrar b-aba b-der"><b><%= v[@verificacion.anexos_componentes_electronicos] if(@verificacion.anexos_componentes_electronicos==0 or @verificacion.anexos_componentes_electronicos==2) %></b></div>
+        <div class="centrar b-aba b-der"><b><%= v[@verificacion.anexos_componentes_electronicos] if(@verificacion.anexos_componentes_electronicos==1)%></b></div>
+        <div class="b-aba b-der b-izq">Otros.</div>
+        <div class="centrar b-aba b-der"><b><%= v[@verificacion.otros] if(@verificacion.otros==0 or @verificacion.otros==2) %></b></div>
+        <div class="centrar b-aba b-der"><b><%= v[@verificacion.otros] if(@verificacion.otros==1)%></b></div>
+        <div class="span-3">
+          <br><br><br><br><br>
+        </div>
+        <div class="firma span-3">
+          <div class="centro-firma"><div class="centrar b-aba"><b><%= @verificacion.expert.nombre %></div>
+          <p class="centrar sin-padding">Nombre y firma<br>
+            de quien realizó la revisión</p>
+        </div>
+      </div>
+      <div class="footer centrar">
+        <p class="alin-izq">Rev.3</p>
+        <p class="centrar">Ref.: IT-CE-IT-01</p>
+        <p class="alin-der">HV-CE-IT-01</p>
+      </div>
+
+    </div>
+    </div>
+  </body>
+</html>

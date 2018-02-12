@@ -3,7 +3,7 @@
     = f.select :city_id,  City.all.map { |c| ["#{c.ciudad}, #{c.estado}", c.id] }
   = f.input :fecha, as: :date
   = f.input :registry_id do
-    = f.select :registry_id,  Registry.all.map { |r| ["FOLIO: #{r.folio.to_s}/#{r.year_folio.to_s} --> #{r.expedient.expediente}", r.id] }
+    = f.select :registry_id, Registry.joins(:result).where("resultado is not 'NOTIFICACION'").map { |r| ["FOLIO: #{r.folio.to_s}/#{r.year_folio.to_s} --> #{r.expedient.expediente}", r.id] }
   = f.input :expedient_id do
     = f.select :expedient_id,  Expedient.all.map { |e| [e.expediente, e.id] }
   = f.input :incluye_expediente, collection: [["SI", 0],["NO", 1],["NO APLICA", 2]], include_blank: false

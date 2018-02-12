@@ -29,6 +29,7 @@ class RegistriesController < ApplicationController
   # POST /registries.json
   def create
     @registry = Registry.new(registry_params)
+
    # @registry[:registry][:expert_ids]= @registry[:registry][:expert_ids].reject{|e| e.empty?}
 
     #raise params.to_yalm
@@ -75,8 +76,10 @@ class RegistriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def registry_params
-      params.require(:registry).permit(:consecutivo, :folio, :year_folio, :detenido, :expedient_id, :city_id, :authority_id, :anexos_recibidos, :fecha_recepcion,
-                                       :fecha_entrega, :result_id, :anexos_entregados, :observaciones, :num_expediente, expedient_attributes: [:id, :expediente, :hojas, :a_inicial, :a_final, :_destroy],
+      params.require(:registry).permit(:consecutivo, :folio, :year_folio, :detenido, :expedient_id, :city_id, :authority_id,
+                                       :anexos_recibidos, :fecha_recepcion,
+                                       :fecha_entrega, :result_id, :anexos_entregados, :observaciones, :num_expediente,
+                                       expedient_attributes: Expedient.attribute_names.map(&:to_sym).push(:_destroy),
                                        city_attributes: [:id, :ciudad, :estado, :_destroy], expert_ids: [],
                                        authority_attributes: Authority.attribute_names.map(&:to_sym).push(:_destroy),
                                        experts_attributes: Expert.attribute_names.map(&:to_sym).push(:_destroy),

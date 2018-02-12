@@ -1,0 +1,48 @@
+*{
+    font-family: "Soberana Sans regular";
+}
+.contenedor-bitacora{
+  /* margin: auto; */
+  /* padding: 20px; */
+  display: grid;
+  font-family: "Soberana Sans regular";
+  font-size: 10pt;
+  /* height: 35cm; */
+  width: 25cm;
+}
+.encabezado{
+  display: grid;
+  grid-template-columns: 7cm 18cm;
+  align-content: center;
+
+  /* grid-template-rows: auto; */
+
+}
+.padding-15izq{
+  padding-left: 15px;
+}
+.cuadro-bitacora{
+  padding-top: 15px;
+  display: grid;
+  /* grid-template-columns: repeat(10,auto); */
+  border-color: black 1px solid;
+}
+.sin-bordes-bitacora{
+  border: 1px white solid;
+}
+table, th, td{
+  border: black 1px solid;
+  border-collapse: collapse;
+}
+th {
+  background-color: #99ffff;
+}
+
+@media print{
+  .menu-ap {display: none;}
+  table { page-break-after: auto;}
+  tr    { page-break-inside:avoid; page-break-after:auto }
+  td    { page-break-inside:avoid; page-break-after:auto }
+  thead { display:table-header-group }
+  tfoot { display:table-footer-group }
+}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Caractula 2</title>
+  </head>
+  <body>
+    <div class="contenedor contenedor-Caractula">
+      <div class="cuadro1 sin-bordes">
+        <div><%= image_tag "logo.png" %></div>
+        <div class="alin-izq titulo3 b-aba1">
+          <b>PROCURADURÍA GENERAL DE LA REPÚBLICA <br>
+            COORDINACIÓN GENERAL DE SERVICIOS PERICIALES<br>
+            COORDINACIÓN DE SERVICIOS PERICIALES EN SONORA
+          </b>
+        </div>
+      </div>
+      <div class="contenedor-cara2">
+        <p class="alin-der"><b>No. Control Interno: E.I.:</b><ins><%= @registries.first.num_expediente %></ins></p>
+        <div class="cuadro-6">
+          <p class="span-2">INFORMACIÓN:</p>
+          <p>RESERVADA:</p>
+          <p class="b-aba"></p>
+          <p>CONFIDENCIAL:</p>
+          <p class="b-aba centrar">X</p>
+        </div>
+        <br>
+        <div class="alin-jus interlineado">
+          <p>Identificación del documento a clasificar:  <ins>INTERVENCIÓN PERICIAL DE
+            <%= @especialidades %>, FOLIO(S):
+              <%= @folios %>.</ins></p>
+          <p>Partes del documento a clasificar:<ins>  COMPLETO.</ins></p>
+          <p>Fecha y tipo de clasificación:    <ins> RESERVADO Y CONFIDENCIAL.</ins></p>
+          <p>Fundamento:<ins> ARTÍCULO 14 FRACCIÓN III. DE LA LEY FEDERAL DE TRANSPARENCIA
+            Y ACCESO A LA INFORMACIÓN PUBLICA GUBERNAMENTAL ARTICULO 180 DEL CÓDIGO FEDERAL
+            DE PROCEDIMIENTOS PENALES.</ins></p>
+          <p>Motivación:<ins>  EL  ARTICULO  EN  MENCIÓN  CONSIDERA  COMO  INFORMACIÓN
+            RESERVADA LAS AVERIGUACIONES PREVIAS Y LOS EXPEDIENTES JUDICIALES; LOS
+            DICTÁMENES PERICIALES SE EMITEN DENTRO DE DICHOS DOCUMENTOS.</ins></p>
+          <p>Posibles consecuencias o daño, en caso de su publicación:<ins> SE INCUMPLIRÍA
+            EL SALVAGUARDO DE LA SECRECÍA EN LAS ACTUACIONES DE LA AVERIGUACIÓN PREVIA.</ins></p>
+
+        </div>
+        <div class="cuadro-7">
+          <p class="">¿Existe versión pública del documento clasificado?</p>
+          <p class="centrar">Si</p>
+          <p class="centrar b-aba"></p>
+          <p class="centrar">No</p>
+          <p class="centrar b-aba"><b>X</b></p>
+          <p class="centrar">En trámite</p>
+          <p class="centrar b-aba"></p>
+        </div>
+        <!-- <div class=""> -->
+          <%= image_tag "f2.png" %>
+        <br><br><br><br><br>
+        <div class="contenedor text alin-jus interlineado">
+
+            <p>Periodo de Clasificación:<ins>10 años.</ins></p>
+            <p>En caso de que el documento clasificado este en archivo, ¿qué servidores públicos
+              son responsables de su acceso, manejo y resguardo? </p>
+            <ins>Q. FRANCISCO JAVIER SUGICH VALENZUELA COORDINADOR ESTATAL DE SERVICIOS PERICIALES
+              EN EL ESTADO DE SONORA.  </ins>
+
+            <p>En caso de que el documento clasificado este inactivo ¿en qué lugar y bajo el
+              resguardo de qué servidores públicos se encuentra?
+              <ins>EN EL ARCHIVO GENERAL DE CONCENTRACIÓN A CARGO DE LA SUBDIRECTORA DE
+                CORRESPONDENCIA Y ARCHIVO EN PGR.</ins>  </p>
+            <p>Fecha y fundamento de desclasificación:__________________________.</p>
+            <p>Motivación de desclasificación:__________________________________.</p>
+            <p>Nombre, cargo y firma del representante de la desclasificación :  </p>
+            <ins>Q.B. FRANCISCO JAVIER SUGICH VALENZUELA COORDINADOR ESTATAL DE SERVICIOS PERICIALES EN
+            EL ESTADO DE SONORA.</ins>
+            <p>Nombre, cargo y firma del titular de la unidad administrativa, responsable de la clasificación:</p>
+            <ins>Q.B. FRANCISCO JAVIER SUGICH VALENZUELA COORDINADOR ESTATAL DE SERVICIOS PERICIALES EN
+            EL ESTADO DE SONORA.</ins>
+            <p>Nombre, cargo y firma del servidor público autorizado para otorgar el Visto
+              Bueno del Comité de Información.</p>
+            <p>_______________________________________________________________.</p>
+          </div>
+        <!-- </div> -->
+
+
+      </div>
+    </div>
+  </body>
+</html>

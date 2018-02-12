@@ -6,17 +6,23 @@ html
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-
-    = link_to "Registro", registries_path
-    |    |
-    = link_to "Peritos", experts_path
-    |    |
-    = link_to "Especialidades", specialties_path
-    |    |
-    = link_to "Validaciones", validations_path
-    |    |
-    = link_to "Verificaciones", verifications_path
-    |    |
-    = link_to "Estadistica", reports_estadistica1_path
+    .menu-ap
+      = link_to "Registro", registries_path
+      |    |
+      = link_to "Peritos", experts_path
+      |    |
+      = link_to "Especialidades", specialties_path
+      |    |
+      = link_to "Validaciones", validations_path
+      |    |
+      = link_to "Verificaciones", verifications_path
+      |    |
+      = link_to "Estadistica", reports_estadistica1_path
+      |    |
+      = link_to "Expedientes", expedients_path
+      |    |
+      = link_to "Autoridades", authorities_path
+      |    |
+      = link_to "Bitacora", reports_bitacora_path
   body
     = yield

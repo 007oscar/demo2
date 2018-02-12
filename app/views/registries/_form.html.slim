@@ -23,8 +23,11 @@
   #fecha
     = f.input :fecha_entrega, include_blank: true
   #resultado
-    = f.association :result, collection: Result.order(:resultado), label_method: :resultado, prompt: 'Escoge un resultado...'
+    = f.association :result, collection: Result.order(:resultado), label_method: :resultado, :selected => Result.last.id
   = f.input :anexos_entregados
   = f.input :observaciones
   = f.input :num_expediente
   = f.submit
+
+
+  / , prompt: 'Escoge un resultado...'

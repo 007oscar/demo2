@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Hoja de validación y verificación</title>
+</head>
+<body>
+<div class="contenedor">
+  <div class="cuadro1">
+    <div><%= image_tag "logo.png" %></div>
+    <div class="b-izq">Anexo 5<br>
+      <b>AGENCIA DE INVESTIGACIÓN CRIMINAL</b><br>
+      <b>Coordinación General de Servicios Periciales</b><br>
+      Coordinación Estatal de Servicios Periciales en Sonora<br>
+      HOJA DE VALIDACIÓN Y VERIFICACIÓN<br>
+      (Requisito 8.2.4 Seguimiento y Medición del Producto)
+    </div>
+  </div>
+
+  <div class="cuadro2">
+    <p class="span-2 titulo1"><b>I. DATOS DE IDENTIFICACIÓN.</b></p>
+    <div class="b-izq1 b-arr1 b-aba b-der">Especialidad:
+      <p><%= @registry.validation.expert.nombre %></p>
+    </div>
+    <div class="b-arr1 b-der1 b-aba">Lugar y Fecha:
+      <p><%= "#{@registry.city.ciudad},#{@registry.city.estado}, a #{@registry.fecha_entrega}" %></p>
+    </div>
+    <div class="b-izq1 b-aba1 b-der">No. de Folio:
+      <p><%= "#{@registry.folio}/#{@registry.year_folio}" %></p>
+    </div>
+    <div class="b-der1 b-aba1">Número de Expediente, Averiguación Previa, Carpeta de Investigación u otro:
+      <p><%= @registry.expedient.expediente %></p>
+    </div>
+  </div>
+
+  <div class="cuadro3">
+    <p class="titulo1 span-3"><b>II.</b> VALIDACIÓN Y VERIFICACIÓN DEL PRODUCTO EN SU MODALIDAD DE INFORME.
+      <br><b>(Marcar con X el resultado).</b>
+    </p>
+    <div class="span-t1 bo"><b>CARACTERÍSTICAS A CONTROLAR</b>
+    </div>
+    <div  class="span-22 b-der b-arr b-aba centrar"><b>CUMPLE</b></div>
+    <div class="b-aba b-der centrar"><b>SI</b></div>
+    <div class="b-aba b-der centrar"><b>NO</b></div>
+    <div class="b-izq">
+      1. ¿El Producto cumple con los requisitos del punto 5.2.2 del Instructivo de Trabajo <b>(IT-CE-IT-01)</b>?
+    </div>
+    <div class="b-izq b-der b-aba  marca-x centrar"> <%= "X" if @registry.result.resultado == "INFORME" %></div>
+    <div class="b-aba b-der  marca-x centrar"></div>
+    <div class="b-izq b-aba">
+      <b>OBSERVACIONES:</b>
+      <br>
+      <div class="firma">
+        <div class="centro-firma b-aba"><%= @registry.validation.expert.nombre if @registry.result.resultado == "INFORME"  %></div>
+        <p class="centrar sin-padding">Nombre y firma<br>
+          de quien realizó la revisión</p>
+      </div>
+    </div>
+    <div class="b-izq b-der b-aba"></div>
+    <div class="b-der b-aba"></div>
+  </div>
+
+  <div class="cuadro3">
+    <p class="titulo1 span-3"><b>III.</b> VALIDACIÓN Y VERIFICACIÓN DEL PRODUCTO EN SU MODALIDAD DE REQUERIMIENTO.
+      <br><b>(Marcar con X el resultado).</b>
+    </p>
+    <div class="span-t1 bo"><b>CARACTERÍSTICAS A CONTROLAR</b>
+    </div>
+    <div  class="span-22 b-der b-arr b-aba centrar"><b>CUMPLE</b></div>
+    <div class="b-aba b-der centrar"><b>SI</b></div>
+    <div class="b-aba b-der centrar"><b>NO</b></div>
+    <div class="b-izq">
+      1. ¿El Producto cumple con los requisitos del punto 5.2.3 del Instructivo de Trabajo <b>(IT-CE-IT-01)</b>?
+    </div>
+    <div class="b-izq b-der b-aba marca-x centrar"> <%= "X" if @registry.result.resultado == "REQUERIMIENTO" %></div>
+    <div class="b-aba b-der marca-x centrar"></div>
+    <div class="b-izq b-aba">
+      <b>OBSERVACIONES:</b>
+      <br>
+      <div class="firma">
+        <div class="centro-firma b-aba"><%= @registry.validation.expert.nombre if @registry.result.resultado == "REQUERIMIENTO" %></div>
+        <p class="centrar sin-padding">Nombre y firma<br>
+          de quien realizó la revisión</p>
+      </div>
+    </div>
+    <div class="b-izq b-der b-aba"></div>
+    <div class="b-der b-aba"></div>
+  </div>
+
+  <div class="cuadro3">
+    <p class="titulo1 span-3"><b>II.</b> VALIDACIÓN Y VERIFICACIÓN DEL PRODUCTO EN SU MODALIDAD DE DICTAMEN.
+      <br><b>(Marcar con X el resultado).</b>
+    </p>
+    <div class="span-t1 bo"><b>CARACTERÍSTICAS A CONTROLAR</b>
+    </div>
+    <div  class="span-22 b-der b-arr b-aba centrar"><b>CUMPLE</b></div>
+    <div class="b-aba b-der centrar"><b>SI</b></div>
+    <div class="b-aba b-der centrar"><b>NO</b></div>
+    <div class="b-izq">
+      1. ¿El Producto cumple con los requisitos del punto 5.2.4 del Instructivo de Trabajo <b>(IT-CE-IT-01)</b>?
+    </div>
+    <div class="b-izq b-der b-aba  marca-x centrar"><%= "X" if @registry.result.resultado == "DICTAMEN" %></div>
+    <div class="b-aba b-der  marca-x centrar"></div>
+    <div class="b-izq b-aba">
+      <b>OBSERVACIONES:</b>
+      <br>
+      <div class="firma">
+        <div class="centro-firma b-aba"><%= @registry.validation.expert.nombre if @registry.result.resultado == "DICTAMEN" %></div>
+        <p class="centrar sin-padding">Nombre y firma<br>
+          de quien realizó la revisión</p>
+      </div>
+    </div>
+    <div class="b-izq b-der b-aba"></div>
+    <div class="b-der b-aba"></div>
+  </div>
+  <div class="footer-validacion centrar">
+    <p class="alin-izq">Rev.3</p>
+    <p class="centrar">Ref.: IT-CE-IT-01</p>
+    <p class="alin-der">HV-CE-IT-02</p>
+  </div>
+</div> <!-- fin de contenedor -->
+<p></p>
+
+</body>
+</html>

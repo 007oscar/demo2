@@ -1,2 +1,15 @@
-h1 Reports#bitacora
-p Find me in app/views/reports/bitacora.html.slim
+= form_tag(:controller => "reports", :action => "bitacora1") do
+  .field
+    label PERITO :
+    select name="perito"
+      = @experts.each do |perito|
+        option value="#{perito.id}"
+          = perito.nombre
+  .field
+    label RANGO DE FECHAS:
+    label Fecha inicial :
+    = date_select "fecha_i", "i", :start_year => Date.today.year - 50, :end_year => Date.today.year, :order => [:day, :month, :year]
+    label Fecha final :
+    = date_select "fecha_f", "f", :start_year => Date.today.year - 50, :end_year => Date.today.year, :order => [:day, :month, :year]
+
+  = submit_tag("Update")
