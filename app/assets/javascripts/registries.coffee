@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $(document).ready ->
-  $('#expediente_lista').hide()
+#  $('#expediente_lista').show()
 #  $('#expediente a.add_fields').hide()
 
   $('#expediente a.add_fields').data('association-insertion-position', 'before').data 'association-insertion-node', 'this'

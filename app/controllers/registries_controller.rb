@@ -30,6 +30,7 @@ class RegistriesController < ApplicationController
 
   # GET /registries/1/edit
   def edit
+
   end
 
   # POST /registries
@@ -106,17 +107,32 @@ class RegistriesController < ApplicationController
       if ultimo == "1"
         ultimo += "/" + r.year_folio.to_s
       else
-        ultimo = Expedient.find(r.expedient).registries.where.not(:num_expediente => '').first.num_expediente
-        if ultimo == ""
-          if (r.year_folio == ultimo.split("/")[1].to_i)
-            ultimo = (ultimo.split("/")[0].to_i + 1).to_s + "/" + ultimo.split("/")[1]
+        # ultimo = Expedient.find(r.expedient).registries.where.not(:num_expediente => '').first.num_expediente
+        if Expedient.find(r.expedient).relacionado.nil?
+          #ultimo = Expedient.find(r.expedient).registries.where.not(num_expediente: '').first.num_expediente
+          if Expedient.find(r.expedient).registries.where.not(num_expediente: '').first.nil?
+            if (r.year_folio == ultimo.split("/")[1].to_i)
+              ultimo = (ultimo.split("/")[0].to_i + 1).to_s + "/" + ultimo.split("/")[1]
+            else
+              contador = 1
+              ultimo =  "1/" + r.year_folio.to_s
+            end
           else
-            contador = 1
-            ultimo =  "1/" + r.year_folio.to_s
+            ultimo = Expedient.find(r.expedient).registries.where.not(num_expediente: '').first.num_expediente
           end
-        elsif r.year_folio > ultimo.split("/")[1].to_i
-            contador = 1   #nuevo año, nuevo consecutivo
+        else
+          ultimo =  Expedient.find(Expedient.find(r.expedient).relacionado).registries.where.not(num_expediente: '').first.num_expediente
         end
+        # if ultimo == ""
+        #   if (r.year_folio == ultimo.split("/")[1].to_i)
+        #     ultimo = (ultimo.split("/")[0].to_i + 1).to_s + "/" + ultimo.split("/")[1]
+        #   else
+        #     contador = 1
+        #     ultimo =  "1/" + r.year_folio.to_s
+        #   end
+        # elsif r.year_folio > ultimo.split("/")[1].to_i
+        #     contador = 1   #nuevo año, nuevo consecutivo
+        # end
       end
       r.update( consecutivo: contador, num_expediente: ultimo )
       contador += 1
