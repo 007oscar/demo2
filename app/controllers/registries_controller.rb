@@ -18,6 +18,7 @@ class RegistriesController < ApplicationController
   # GET /registries/new
   def new
     @registry = Registry.new
+    # @registry.build_expedient
     if Registry.count < 1
       @registry.consecutivo = 1
     elsif Registry.last.consecutivo.nil?

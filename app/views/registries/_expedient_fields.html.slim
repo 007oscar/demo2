@@ -1,7 +1,4 @@
 .nested-fields
-  /= f.input :expediente
-  /= f.select :relacionado, collection: Expedient.order(:expediente),label_method: :expediente, prompt: 'Escoge un expediente...'
-  /= f.association :expedient do |e|
   = f.input :expediente
   = f.input :relacionado, collection: Expedient.all.map{|exp| [exp.expediente, exp.id]}
   = link_to_remove_association "Quitar expediente...", f

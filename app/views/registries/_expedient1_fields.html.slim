@@ -1,0 +1,2 @@
+  = f.input :expediente, collection: Expedient.all.map{|exp| [exp.expediente, exp.id]}
+  = f.input :relacionado, collection: Expedient.all.map{|exp| [exp.expediente, exp.id]}

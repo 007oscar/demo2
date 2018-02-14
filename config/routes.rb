@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root to: 'registries#index'
   post 'reports/estadistica'
   get 'reports/estadistica1'
   get 'reports/reporte'

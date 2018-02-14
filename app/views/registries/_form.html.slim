@@ -4,14 +4,13 @@
   = f.input :folio
   = f.input :year_folio
   = f.input :detenido, as: :radio_buttons
+
   #expediente
     #expediente_lista
-      = f.simple_fields_for :expedient do |e|
-        = e.input :expediente, collection: Expedient.all.map{|exp| [exp.expediente, exp.id]}
-        = e.input :relacionado, collection: Expedient.all.map{|exp| [exp.expediente, exp.id]}
-      /= f.association :expedient, collection: Expedient.order(:expediente),label_method: :expediente, prompt: 'Escoge un expediente...'
-    = link_to_add_association 'agregar expediente...', f, :expedient
-    /= f.select :
+      = f.simple_fields_for :expedient do |o|
+        = o.input :expediente
+        = o.input :relacionado, collection: Expedient.all.map{|exp| [exp.expediente, exp.id]}
+      = link_to_add_association 'agregar expediente...', f, :expedient
   #ciudad
     #ciudad_lista
       = f.association :city, collection: City.order(:ciudad), label_method: lambda{| ciudad | "#{ciudad.ciudad}, #{ciudad.estado}"}, prompt: 'Escoge un ciudad...'
