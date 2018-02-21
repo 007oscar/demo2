@@ -4,13 +4,9 @@
   = f.input :folio
   = f.input :year_folio
   = f.input :detenido, as: :radio_buttons
-  - f.input :expedient, hidden: true
-  #expediente
-    #expediente_lista
-      = simple_fields_for :expedient do |e|
-        = e.input :expediente, input_html: {value: @default_values[:expediente]}
-        = e.input :relacionado, collection: Expedient.all.map{|exp| [exp.expediente, exp.id]}, include_blank: true, selected: @default_values[:relacionado]
-      /= link_to_add_association 'agregar expediente...', f, :expedient
+  = f.association :expedient do |c|
+    = c.input :expediente
+    = c.input :relacionado
   #ciudad
     #ciudad_lista
       = f.association :city, collection: City.order(:ciudad), label_method: lambda{| ciudad | "#{ciudad.ciudad}, #{ciudad.estado}"}, prompt: 'Escoge un ciudad...'
@@ -26,7 +22,7 @@
   #fecha
     = f.input :fecha_entrega, include_blank: true
   #resultado
-    = f.association :result, collection: Result.order(:resultado), label_method: :resultado, :selected => Result.last.id
+    = f.association :result, collection: Result.order(:resultado), label_method: :resultado, :selected => Result.last.id, include_blank: true
   = f.input :anexos_entregados
   = f.input :observaciones
   = f.input :num_expediente

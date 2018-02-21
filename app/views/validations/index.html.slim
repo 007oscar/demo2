@@ -5,12 +5,17 @@ table
     tr
       th Registry
       th Validador
+      th Ciudad
+      th Estado
       th colspan="4"
   tbody
     - @validations.each do |validation|
       tr
         td= "Folio :#{validation.registry.folio.to_s}/#{validation.registry.year_folio.to_s} --> #{validation.registry.expedient.expediente}"
         td= validation.expert.nombre
+        td= validation.city.ciudad
+        td= validation.city.estado
+
         td= link_to 'Show', validation
         td= link_to 'Edit', edit_validation_path(validation)
         td= link_to 'Formato', reports_validacion_path(validation.registry_id)

@@ -69,6 +69,6 @@ class ValidationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def validation_params
-      params.require(:validation).permit(:registry_id, :expert_id)
+      params.require(:validation).permit(:registry_id, :expert_id, city_attributes: City.attribute_names.map(&:to_sym).push(:_destroy))
     end
 end

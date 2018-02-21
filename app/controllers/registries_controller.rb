@@ -1,12 +1,12 @@
 class RegistriesController < ApplicationController
   before_action :set_registry, only: [:show, :edit, :update, :destroy]
-  after_action :actualizar_registros, only: [:update, :create, :destroy]
+  #after_action :actualizar_registros, only: [:update, :create, :destroy]
 
   # GET /registries
   # GET /registries.json
   def index
     #@registries = Registry.all
-    @registries =  Registry.all.order(:year_folio, :folio)
+    @registries =  Registry.all.includes([:expedient,:authority,:result,:city,:experts]).order(:year_folio, :folio)
   end
 
   # GET /registries/1
@@ -18,6 +18,7 @@ class RegistriesController < ApplicationController
   # GET /registries/new
   def new
     @registry = Registry.new
+    @registry.build_expedient
     @default_values = {expediente: '', relacionado: ''}
     # @registry.build_expedient
     if Registry.count < 1
@@ -44,11 +45,12 @@ class RegistriesController < ApplicationController
   def create
     @registry = Registry.new(registry_params)
     # raise params.to_yalm
-    if Expedient.find_by_expediente(params[:expedient]['expediente']).nil?
-      @registry.build_expedient(expediente:params[:expedient]['expediente'], relacionado: params[:expedient]['relacionado'] )
-    else
-      @registry.expedient = Expedient.find_by_expediente(params[:expedient]['expediente'])
-    end
+
+    # if Expedient.find_by_expediente(params[:expedient]['expediente']).nil?
+    #   @registry.build_expedient(expediente:params[:expedient]['expediente'], relacionado: params[:expedient]['relacionado'] )
+    # else
+    #   @registry.expedient = Expedient.find_by_expediente(params[:expedient]['expediente'])
+    # end
 
     respond_to do |format|
       if @registry.save
@@ -64,13 +66,13 @@ class RegistriesController < ApplicationController
   # PATCH/PUT /registries/1
   # PATCH/PUT /registries/1.json
   def update
-    # @registry = Registry.new(registry_params)
-    if Expedient.find_by_expediente(params[:expedient]['expediente']).nil?
-      @registry.build_expedient(expediente:params[:expedient]['expediente'], relacionado: params[:expedient]['relacionado'] )
-    else
-      @registry.expedient = Expedient.find_by_expediente(params[:expedient]['expediente'])
-      @registry.expedient.update(relacionado: params[:expedient]['relacionado'])
-    end
+
+    # if Expedient.find_by_expediente(params[:expedient]['expediente']).nil?
+    #   @registry.build_expedient(expediente:params[:expedient]['expediente'], relacionado: params[:expedient]['relacionado'] )
+    # else
+    #   @registry.expedient = Expedient.find_by_expediente(params[:expedient]['expediente'])
+    #   @registry.expedient.update(relacionado: params[:expedient]['relacionado'])
+    # end
     respond_to do |format|
       if @registry.update(registry_params)
         format.html { redirect_to @registry, notice: 'Registry was successfully updated.' }
@@ -112,50 +114,58 @@ class RegistriesController < ApplicationController
     end
 
   def actualizar_registros
-    registry = Registry.order(:year_folio, :folio)
+    registry = Registry.all.order(:year_folio, :folio) #.where(year_folio: 2018).order(:year_folio, :folio)
     contador = 1
-    Registry.update(num_expediente: '')
+    registry.update(num_expediente: '')
     ultimo = "1"
     ultimo_tmp = ''
+    expedients = Expedient.all
 
     registry.each do |r|
-      # contador += 1
-
-      if r.folio == 10131
-        kkkk = 0
-      end
-
-      # if ultimo == "1"
-      #   ultimo += "/" + r.year_folio.to_s
-      # else
-        # ultimo = Expedient.find(r.expedient).registries.where.not(:num_expediente => '').first.num_expediente
-        if Expedient.find(r.expedient).relacionado.nil?
-          #ultimo = Expedient.find(r.expedient).registries.where.not(num_expediente: '').first.num_expediente
-          if Expedient.find(r.expedient).registries.where.not(num_expediente: '').first.nil?
-            if (r.year_folio == ultimo.split("/")[1].to_i)
-              ultimo = (ultimo.split("/")[0].to_i + 1).to_s + "/" + ultimo.split("/")[1]
-              ultimo_tmp = ultimo
-            else
-              contador = 1
-              ultimo =  "1/" + r.year_folio.to_s
-              ultimo_tmp = ultimo
-            end
-          else  #ya existe un antecedente
-            ultimo = Expedient.find(r.expedient).registries.where.not(num_expediente: '').first.num_expediente
+      if expedients.find(r.expedient).relacionado.nil?
+        if expedients.find(r.expedient).registries.where.not(num_expediente: '').first.nil?
+          if (r.year_folio == ultimo.split("/")[1].to_i)
+            ultimo = (ultimo.split("/")[0].to_i + 1).to_s + "/" + ultimo.split("/")[1]
+            ultimo_tmp = ultimo
+          else
+            contador = 1
+            ultimo =  "1/" + r.year_folio.to_s
+            ultimo_tmp = ultimo
           end
-        else
-          #if (r.year_folio == ultimo.split("/")[1].to_i)
-          #  ultimo = (ultimo.split("/")[0].to_i + 1).to_s + "/" + ultimo.split("/")[1]
-          #else
-          #  contador = 1
-          #  ultimo =  "1/" + r.year_folio.to_s
-          #end
-          ultimo =  Expedient.find(Expedient.find(r.expedient).relacionado).registries.where.not(num_expediente: '').first.num_expediente
+        else  #ya existe un antecedente
+          ultimo = expedients.find(r.expedient).registries.where.not(num_expediente: '').first.num_expediente
         end
+      else
+        ultimo =  expedients.find(expedients.find(r.expedient).relacionado).registries.where.not(num_expediente: '').first.num_expediente
+      end
       r.update( consecutivo: contador, num_expediente: ultimo )
       ultimo = ultimo_tmp if ultimo_tmp != ''   #"#{contador}/#{r.year_folio}"  #actualiza al ultimo registro en especial el año por las comparaciones arriba
       contador += 1
     end
+
+
+
+    # registry.each do |r|
+    #     if Expedient.find(r.expedient).relacionado.nil?
+    #       if Expedient.find(r.expedient).registries.where.not(num_expediente: '').first.nil?
+    #         if (r.year_folio == ultimo.split("/")[1].to_i)
+    #           ultimo = (ultimo.split("/")[0].to_i + 1).to_s + "/" + ultimo.split("/")[1]
+    #           ultimo_tmp = ultimo
+    #         else
+    #           contador = 1
+    #           ultimo =  "1/" + r.year_folio.to_s
+    #           ultimo_tmp = ultimo
+    #         end
+    #       else  #ya existe un antecedente
+    #         ultimo = Expedient.find(r.expedient).registries.where.not(num_expediente: '').first.num_expediente
+    #       end
+    #     else
+    #       ultimo =  Expedient.find(Expedient.find(r.expedient).relacionado).registries.where.not(num_expediente: '').first.num_expediente
+    #     end
+    #   r.update( consecutivo: contador, num_expediente: ultimo )
+    #   ultimo = ultimo_tmp if ultimo_tmp != ''   #"#{contador}/#{r.year_folio}"  #actualiza al ultimo registro en especial el año por las comparaciones arriba
+    #   contador += 1
+    # end
   end
 
     # for r in (0..registry.count-1)
@@ -175,4 +185,15 @@ class RegistriesController < ApplicationController
     #   end
     # end
 
+  def validar_expediente
+    if params[:expedient][:expediente][0..2].upcase == "FED"
+       temp = params[:expedient][:expediente].split('/')
+      if temp.count > 2
+        if params[:expedient][:expediente].split('/')[-2].size < 7
+
+        end
+      end
+
+      end
+  end
 end

@@ -109,7 +109,8 @@ class ReportsController < ApplicationController
   def bitacora1
     @registries = Expert.find(params[:perito]).registries.where("fecha_recepcion between ? and ?",  \
                                      Date.civil(params["fecha_i"]["i(1i)"].to_i, params["fecha_i"]["i(2i)"].to_i, params["fecha_i"]["i(3i)"].to_i), \
-                                     Date.civil(params["fecha_f"]["f(1i)"].to_i, params["fecha_f"]["f(2i)"].to_i, params["fecha_f"]["f(3i)"].to_i))
+                                     Date.civil(params["fecha_f"]["f(1i)"].to_i, params["fecha_f"]["f(2i)"].to_i, params["fecha_f"]["f(3i)"].to_i)). \
+                                     order(:year_folio, :folio)
     @expert = Expert.find(params[:perito])
   end
   def caractula1

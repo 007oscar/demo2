@@ -23,5 +23,6 @@ class Registry < ApplicationRecord
   validates :folio, presence: true
   validates :year_folio, presence: true
   # validates :expedient_id, presence: true
+  validates_associated :expedient
 
 end

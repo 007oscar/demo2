@@ -41,7 +41,7 @@
       <% @registries.order(:consecutivo).each do |registry| %>
         <tr>
           <td><%= registry.consecutivo %></td>
-          <td><%= registry.folio %></td>
+          <td><%= "#{registry.folio}/#{registry.year_folio}" %></td>
           <td><%= registry.expedient.expediente %></td>
           <td><%= "#{registry.city.ciudad}, #{registry.city.estado}" %></td>
           <td><%= registry.authority.nombre %></td>
