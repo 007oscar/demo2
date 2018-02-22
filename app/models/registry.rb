@@ -6,6 +6,7 @@ class Registry < ApplicationRecord
   has_many :has_experts
   has_many :experts, through: :has_experts
   has_one :validation
+  has_one :verification
 
   # attr_accessor :expedient
 

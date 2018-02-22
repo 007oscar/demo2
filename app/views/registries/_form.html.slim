@@ -16,11 +16,13 @@
       = f.association :authority, collection: Authority.order(:nombre), label_method: :nombre, prompt: 'Escoge una autoridad...'
     = link_to_add_association 'agregar autoridad...', f, :authority
   = f.input :anexos_recibidos
-  = f.input :fecha_recepcion
+  .field
+    #fecha_registro_recepcion
+      = f.input :fecha_recepcion, as: :string
   #experto
     = f.association :experts, as: :check_boxes, label_method: :nombre
-  #fecha
-    = f.input :fecha_entrega, include_blank: true
+  #fecha_registro_entrega
+    = f.input :fecha_entrega, as: :datepicker
   #resultado
     = f.association :result, collection: Result.order(:resultado), label_method: :resultado, :selected => Result.last.id, include_blank: true
   = f.input :anexos_entregados

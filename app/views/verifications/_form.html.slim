@@ -6,16 +6,25 @@
     = f.select :registry_id, Registry.joins(:result).where("resultado is not 'NOTIFICACION'").map { |r| ["FOLIO: #{r.folio.to_s}/#{r.year_folio.to_s} --> #{r.expedient.expediente}", r.id] }
   = f.input :expedient_id do
     = f.select :expedient_id,  Expedient.all.map { |e| [e.expediente, e.id] }
-  = f.input :incluye_expediente, collection: [["SI", 0],["NO", 1],["NO APLICA", 2]], include_blank: false
-  = f.input :coincide_expediente, collection: [["SI", 0],["NO", 1],["NO APLICA", 2]], include_blank: false
-  = f.input :incluye_anexos, collection: [["SI", 0],["NO", 1],["NO APLICA", 2]], include_blank: false
-  = f.input :coinciden_anexos, collection: [["SI", 0],["NO", 1],["NO APLICA", 2]], include_blank: false
-  = f.input :anexos_equipos_de_computo, collection: [["SI", 0],["NO", 1],["NO APLICA", 2]], include_blank: false
-  = f.input :anexos_equipo_de_comunicacion, collection: [["SI", 0],["NO", 1],["NO APLICA", 2]], include_blank: false
-  = f.input :anexos_material_fotografico, collection: [["SI", 0],["NO", 1],["NO APLICA", 2]], include_blank: false
-  = f.input :anexos_disp_alm_elect, collection: [["SI", 0],["NO", 1],["NO APLICA", 2]], include_blank: false
-  = f.input :anexos_componentes_electronicos, collection: [["SI", 0],["NO", 1],["NO APLICA", 2]], include_blank: false
-  = f.input :otros, collection: [["SI", 0],["NO", 1],["NO APLICA", 2]], include_blank: false
+  = f.input :incluye_expediente, collection: [["SI", 0],["NO", 1],["NO APLICA", 2]], include_blank: false, \
+          label: "La solicitud Ministerial, Judicial u otra. Incluye Expediente original y/o copia."
+  = f.input :coincide_expediente, collection: [["SI", 0],["NO", 1],["NO APLICA", 2]], include_blank: false, \
+          label: "El número de expediente original y/o copia coincide con el número de la solicitud original."
+  = f.input :incluye_anexos, collection: [["SI", 0],["NO", 1],["NO APLICA", 2]], include_blank: false, \
+          label: "La solicitud Ministerial, Judicial u otra. Incluye Anexos."
+  = f.input :coinciden_anexos, collection: [["SI", 0],["NO", 1],["NO APLICA", 2]], include_blank: false, \
+        label: "Los anexos coinciden con lo descrito en la solicitud origina."
+  = f.input :anexos_equipos_de_computo, collection: [["SI", 0],["NO", 1],["NO APLICA", 2]], include_blank: false, \
+        label: "Los anexos se componen de equipo de cómputo (CPU, Monitores, Scanners, videojuegos, etc.)."
+  = f.input :anexos_equipo_de_comunicacion, collection: [["SI", 0],["NO", 1],["NO APLICA", 2]], include_blank: false, \
+        label: "Los anexos se componen de equipo de comunicación (teléfonos, radio comunicadores, agendas electrónicas, antenas)."
+  = f.input :anexos_material_fotografico, collection: [["SI", 0],["NO", 1],["NO APLICA", 2]], include_blank: false, \
+        label: "Los anexos se componen de material fotográfico."
+  = f.input :anexos_disp_alm_elect, collection: [["SI", 0],["NO", 1],["NO APLICA", 2]], include_blank: false, \
+        label: "Los anexos se componen de dispositivos de almacenamiento electrónico o magnético (3½, CDs, cartuchos de cinta magnética, memoria electrónica, etc.)."
+  = f.input :anexos_componentes_electronicos, collection: [["SI", 0],["NO", 1],["NO APLICA", 2]], include_blank: false, \
+        label: "Los anexos se componen de dispositivos electrónicos."
+  = f.input :otros, collection: [["SI", 0],["NO", 1],["NO APLICA", 2]], include_blank: false, label: "Otros."
   = f.input :expert_id do
     = f.select :expert_id,  Expert.all.map { |e| [e.nombre, e.id] }
   br
