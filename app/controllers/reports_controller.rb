@@ -14,8 +14,8 @@ class ReportsController < ApplicationController
        @print = Hash["MPF", mensual_total("MPF" ), "PFM", mensual_total("PFM"), "JDOS", mensual_total("JDOS"), \
                      "POL. FED.", mensual_total("POL. FED."), "PGJ EDO." , mensual_total("PGJ EDO."), \
                      "OTROS", mensual_total("OTROS"), \
-          "INICIO", Registry.joins(:experts).where("expert_id = ? and fecha_recepcion < ? and fecha_entrega is null", \
-                                  params[:perito], Date.civil(params["fecha_m"]["m(1i)"].to_i, params["fecha_m"]["m(2i)"].to_i)).count,
+          "INICIO", Registry.joins(:experts, :result).where("expert_id = ? and fecha_recepcion < ? and fecha_entrega is null and resultado != ?", \
+                                  params[:perito], Date.civil(params["fecha_m"]["m(1i)"].to_i, params["fecha_m"]["m(2i)"].to_i), "NOTIFICACION").count,
           "PERITO", Expert.find(params[:perito]).nombre,
           "DETENIDOS", Registry.where("detenido = ? and fecha_recepcion between ? and ?", \
                                   true, Date.civil(params["fecha_m"]["m(1i)"].to_i, params["fecha_m"]["m(2i)"].to_i), \
@@ -52,8 +52,8 @@ class ReportsController < ApplicationController
       @print = Hash[ "MPF", semanal_total("MPF" ), "PFM", semanal_total("PFM"), \
                      "JDOS", semanal_total("JDOS"),"POL. FED.",  semanal_total("POL. FED."), \
                      "PGJ EDO.",  semanal_total("PGJ EDO."), "OTROS", semanal_total("OTROS"), \
-          "INICIO", Registry.joins(:experts).where("expert_id = ? and fecha_recepcion < ? and fecha_entrega is null", \
-                                  params[:perito], Date.civil(params["fecha_s"]["s(1i)"].to_i, params["fecha_s"]["s(2i)"].to_i, params["fecha_s"]["s(3i)"].to_i)).count,
+          "INICIO", Registry.joins(:experts,:result).where("expert_id = ? and fecha_recepcion < ? and fecha_entrega is null and resultado != ?", \
+                                  params[:perito], Date.civil(params["fecha_s"]["s(1i)"].to_i, params["fecha_s"]["s(2i)"].to_i, params["fecha_s"]["s(3i)"].to_i) - 6, "NOTIFICACION").count,
           "PERITO", Expert.find(params[:perito]).nombre,
           "DETENIDOS",Registry.where("detenido = ? and fecha_recepcion between ? and ?", \
                                   true, Date.civil(params["fecha_s"]["s(1i)"].to_i, params["fecha_s"]["s(2i)"].to_i, params["fecha_s"]["s(3i)"].to_i) - 6, \
@@ -62,10 +62,15 @@ class ReportsController < ApplicationController
       book = Spreadsheet.open('semanal.xls', 'rb')
       sheet1 = book.worksheet 0
       # mes = ["ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE"]
-      sheet1.rows[5][12] = (Date.civil(params["fecha_s"]["s(1i)"].to_i, params["fecha_s"]["s(2i)"].to_i, params["fecha_s"]["s(3i)"].to_i) - 6).to_s + \
-                           "-" + Date.civil(params["fecha_s"]["s(1i)"].to_i, params["fecha_s"]["s(2i)"].to_i, params["fecha_s"]["s(3i)"].to_i).to_s
-
-      sheet1.rows[7][12] = (Date.civil(params["fecha_s"]["s(1i)"].to_i, params["fecha_s"]["s(2i)"].to_i, params["fecha_s"]["s(3i)"].to_i)).to_s
+      fecha_i = Date.civil(params["fecha_s"]["s(1i)"].to_i, params["fecha_s"]["s(2i)"].to_i, params["fecha_s"]["s(3i)"].to_i) - 6
+      fecha_f = Date.civil(params["fecha_s"]["s(1i)"].to_i, params["fecha_s"]["s(2i)"].to_i, params["fecha_s"]["s(3i)"].to_i)
+      if fecha_i.month == fecha_f.month and fecha_i.year == fecha_f.year
+        rango = "#{fecha_i.day}-#{fecha_f.strftime("%d/%m/%Y")}"
+      else
+        rango = "#{fecha_i.strftime("%d/%m/%Y")}-#{fecha_f.strftime("%d/%m/%Y")}"
+      end
+      sheet1.rows[5][12] = rango
+      sheet1.rows[7][12] = (Date.civil(params["fecha_s"]["s(1i)"].to_i, params["fecha_s"]["s(2i)"].to_i, params["fecha_s"]["s(3i)"].to_i).strftime("%d/%m/%Y")).to_s
 
       # sheet1.rows[12][4] = @print["INICIO"]
       sheet1.rows[12][4] = @print["MPF"]["PETICIONES"]
@@ -91,7 +96,6 @@ class ReportsController < ApplicationController
       book.write 'reporte_generado.xls'
     end
   end
-
 
   def validacion
     @registry = Registry.find(params[:id])
@@ -165,27 +169,27 @@ class ReportsController < ApplicationController
   end
 
   def semanal_productos(autoridad, producto)
-    Registry.joins(:authority, :result).where("puesto = ? and resultado = ? and fecha_recepcion between ? and ?", \
+    Registry.joins(:authority, :result, :experts).where("puesto = ? and resultado = ? and fecha_recepcion between ? and ? and expert_id = ?", \
                                 autoridad, producto, Date.civil(params["fecha_s"]["s(1i)"].to_i, params["fecha_s"]["s(2i)"].to_i, params["fecha_s"]["s(3i)"].to_i) - 6, \
-                                Date.civil(params["fecha_s"]["s(1i)"].to_i, params["fecha_s"]["s(2i)"].to_i, params["fecha_s"]["s(3i)"].to_i)).count
+                                Date.civil(params["fecha_s"]["s(1i)"].to_i, params["fecha_s"]["s(2i)"].to_i, params["fecha_s"]["s(3i)"].to_i), params[:perito]).count
   end
 
   def semanal_peticiones(autoridad)
-    Registry.joins(:authority, :result).where("puesto = ? and resultado is not ? and fecha_recepcion between ? and ?", \
+    Registry.joins(:authority, :result, :experts).where("puesto = ? and resultado is not ? and fecha_recepcion between ? and ? and expert_id = ?", \
                                 autoridad, "NOTIFICACION", Date.civil(params["fecha_s"]["s(1i)"].to_i, params["fecha_s"]["s(2i)"].to_i, params["fecha_s"]["s(3i)"].to_i) - 6, \
-                                Date.civil(params["fecha_s"]["s(1i)"].to_i, params["fecha_s"]["s(2i)"].to_i, params["fecha_s"]["s(3i)"].to_i)).count
+                                Date.civil(params["fecha_s"]["s(1i)"].to_i, params["fecha_s"]["s(2i)"].to_i, params["fecha_s"]["s(3i)"].to_i), params[:perito]).count
   end
 
   def mensual_productos(autoridad, producto)
-    Registry.joins(:authority, :result).where("puesto = ? and resultado = ? and fecha_recepcion between ? and ?", \
+    Registry.joins(:authority, :result, :experts).where("puesto = ? and resultado = ? and fecha_recepcion between ? and ? and expert_id = ?", \
                                 autoridad, producto, Date.civil(params["fecha_m"]["m(1i)"].to_i, params["fecha_m"]["m(2i)"].to_i), \
-                                Date.civil(params["fecha_m"]["m(1i)"].to_i, params["fecha_m"]["m(2i)"].to_i, -1)).count
+                                Date.civil(params["fecha_m"]["m(1i)"].to_i, params["fecha_m"]["m(2i)"].to_i, -1), params[:perito]).count
   end
 
   def mensual_peticiones(autoridad)
-    Registry.joins(:authority, :result).where("puesto = ? and resultado is not ? and fecha_recepcion between ? and ?", \
+    Registry.joins(:authority, :result, :experts).where("puesto = ? and resultado is not ? and fecha_recepcion between ? and ? and expert_id = ?", \
                                 autoridad, "NOTIFICACION", Date.civil(params["fecha_m"]["m(1i)"].to_i, params["fecha_m"]["m(2i)"].to_i), \
-                                Date.civil(params["fecha_m"]["m(1i)"].to_i, params["fecha_m"]["m(2i)"].to_i, -1)).count
+                                Date.civil(params["fecha_m"]["m(1i)"].to_i, params["fecha_m"]["m(2i)"].to_i, -1), params[:perito]).count
   end
 
   def mensual_total(autoridad)

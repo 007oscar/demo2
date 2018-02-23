@@ -1,7 +1,7 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
-jQuery ->
+$(document).on 'turbolinks:load', ->
   $("#verification_incluye_expediente").change ->
     if $("#verification_incluye_expediente option:selected").text() == "NO"
       resetear_select($("#verification_coincide_expediente"), "NO APLICA")

@@ -5,6 +5,7 @@
   <title>Bitacora de trabajo</title>
 </head>
 <body>
+<% contador = 0 %>
 <div class="contenedor-bitacora">
 
   <div class="centrar"><b>Anexo 6</b></div>
@@ -39,15 +40,16 @@
       </tr>
       </thead>
       <% @registries.order(:consecutivo).each do |registry| %>
+        <% contador += 1 %>
         <tr>
-          <td><%= registry.consecutivo %></td>
+          <td><%= contador %></td>
           <td><%= "#{registry.folio}/#{registry.year_folio}" %></td>
           <td><%= registry.expedient.expediente %></td>
           <td><%= "#{registry.city.ciudad}, #{registry.city.estado}" %></td>
           <td><%= registry.authority.nombre %></td>
           <td><%= registry.anexos_recibidos %></td>
-          <td><%= registry.fecha_recepcion %></td>
-          <td><%= registry.fecha_entrega %></td>
+          <td><%= registry.fecha_recepcion.strftime("%d/%m/%Y") %></td>
+          <td><%= registry.fecha_entrega.strftime("%d/%m/%Y") %></td>
           <td><%= registry.result.resultado if not registry.result.nil? %></td>
           <td><%= registry.observaciones %></td>
         </tr>

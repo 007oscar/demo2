@@ -13,11 +13,13 @@ class RegistriesController < ApplicationController
   # GET /registries/1.json
   def show
     #@registry = Registry.order(:year_folio, :folio)
+    @fecha_r = @registry.fecha_recepcion
   end
 
   # GET /registries/new
   def new
     @registry = Registry.new
+    @fecha_r = Time.new
     @registry.build_expedient
     @default_values = {expediente: '', relacionado: ''}
     # @registry.build_expedient
@@ -33,6 +35,7 @@ class RegistriesController < ApplicationController
 
   # GET /registries/1/edit
   def edit
+    @fecha_r = @registry.fecha_recepcion
     if @registry.expedient.relacionado.nil?
       @default_values = {expediente: @registry.expedient.expediente, relacionado: ''}
     else
@@ -103,7 +106,7 @@ class RegistriesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def registry_params
       params.require(:registry).permit(:consecutivo, :folio, :year_folio, :detenido, :expedient_id, :city_id, :authority_id,
-                                       :anexos_recibidos, :fecha_recepcion,
+                                       :anexos_recibidos, :fecha_recepcion, :fecha_r, :hora_r, :fecha_e, :hora_e,
                                        :fecha_entrega, :result_id, :anexos_entregados, :observaciones, :num_expediente,
                                        expedient_attributes: Expedient.attribute_names.map(&:to_sym).push(:_destroy),
                                        city_attributes: [:id, :ciudad, :estado, :_destroy], expert_ids: [],

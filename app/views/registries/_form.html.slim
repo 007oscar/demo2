@@ -1,5 +1,7 @@
 = simple_form_for registry do |f|
   = f.error_notification
+  span
+    = f.input :observaciones, as: :text, text: "hola"
   = f.input :consecutivo
   = f.input :folio
   = f.input :year_folio
@@ -15,20 +17,21 @@
     #autoridad_lista
       = f.association :authority, collection: Authority.order(:nombre), label_method: :nombre, prompt: 'Escoge una autoridad...'
     = link_to_add_association 'agregar autoridad...', f, :authority
-  = f.input :anexos_recibidos
   .field
-    #fecha_registro_recepcion
-      = f.input :fecha_recepcion, as: :string
+    = f.input :anexos_recibidos, as: :text, input_html: {rows: 4}
+  #fecha_registro_recepcion
+    = f.input :fecha_r, as: :string, input_html: {value: (@fecha_r.strftime("%d/%m/%Y") if @fecha_r.present?)}
+    = f.input :hora_r, as: :string, input_html: { value: (@fecha_r.strftime("%I:%M %p") if @fecha_r.present?)}
   #experto
     = f.association :experts, as: :check_boxes, label_method: :nombre
   #fecha_registro_entrega
-    = f.input :fecha_entrega, as: :datepicker
+    = f.input :fecha_e, as: :string, input_html: {value: (registry.fecha_entrega.strftime('%d/%m/%Y') if registry.fecha_entrega.present?)}
+    = f.input :hora_e, as: :string, input_html: {value: (registry.fecha_entrega.strftime('%I:%M %p') if registry.fecha_entrega.present?)}
   #resultado
-    = f.association :result, collection: Result.order(:resultado), label_method: :resultado, :selected => Result.last.id, include_blank: true
+    = f.association :result, collection: Result.order(:resultado), label_method: :resultado, :selected => (registry.result_id if registry.result_id.present?) , include_blank: true
   = f.input :anexos_entregados
-  = f.input :observaciones
-  = f.input :num_expediente
+  .field
+    = f.input :observaciones
+  .field
+    = f.input :num_expediente
   = f.submit
-
-
-  / , prompt: 'Escoge un resultado...'
