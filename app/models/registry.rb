@@ -30,54 +30,55 @@ class Registry < ApplicationRecord
   validates_associated :expedient
 
   #fecha de recepcion
-  @fecha_r = ""
-  @fecha_e = ""
-  @hora_r = ""
-  @hora_e = ""
+  # @fecha_r = ""
+  # @fecha_e = ""
+  # @hora_r = ""
+  # @hora_e = ""
 
   def fecha_r
-    @fecha_r.strftime("%d/%m/%Y") if @fecha_r.present?
+    @fecha_r.try(:fecha_recepcion).strftime("%d/%m/%Y")
   end
 
   def hora_r
-    @hora_r.strftime("%I:%M %p") if @hora_r.present?
+    @hora_r.try(:fecha_recepcion).strftime("%I:%M %p")
   end
 
   def fecha_r=(date)
     # Change back to datetime friendly format
-    @fecha_r = Date.parse(date).strftime("%d/%m/%Y")
+    @fecha_r = Date.parse(date).strftime("%d/%m/%Y") if date.present?
   end
 
   def hora_r=(time)
     # Change back to datetime friendly format
-    @hora_r = Time.parse(time).strftime("%I:%M %p")
+    @hora_r = Time.parse(time).strftime("%I:%M %p") if time.present?
   end
 
   # fecha de entrega
   def fecha_e
-    @fecha_e.strftime("%d/%m/%Y") if @fecha_e.present?
+    @fecha_e.try(:fecha_entrega).strftime("%d/%m/%Y")
   end
 
   def hora_e
-    @hora_e.strftime("%I:%M %p") if @hora_e.present?
+    @hora_e.try(:fecha_entrega).strftime("%I:%M %p")
   end
 
   def fecha_e=(date)
     # Change back to datetime friendly format
-    @fecha_e = Date.parse(date).strftime("%d/%m/%Y")
+    @fecha_e = Date.parse(date).strftime("%d/%m/%Y") if date.present?
   end
 
   def hora_e=(time)
     # Change back to datetime friendly format
-    @hora_e = Time.parse(time).strftime("%H:%M %p")
+    @hora_e = Time.parse(time).strftime("%H:%M %p") if time.present?
   end
 
   #############
   def convertir_fecha_r
-    self.fecha_recepcion = Time.parse( "#{@fecha_r} #{@hora_r}")
+    self.fecha_recepcion = Time.parse( "#{@fecha_r} #{@hora_r}") if @fecha_r.present?
   end
 
   def convertir_fecha_e
-    self.fecha_entrega = Time.parse( "#{@fecha_e} #{@hora_e}")
+    self.fecha_entrega = Time.parse( "#{@fecha_e} #{@hora_e}") if @fecha_e.present?
   end
+
 end

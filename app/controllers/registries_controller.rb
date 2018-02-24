@@ -6,7 +6,8 @@ class RegistriesController < ApplicationController
   # GET /registries.json
   def index
     #@registries = Registry.all
-    @registries =  Registry.all.includes([:expedient,:authority,:result,:city,:experts]).order(:year_folio, :folio)
+    @registries =  Registry.paginate(page: params[:page], per_page: 10 ).includes([:expedient,:authority,:result,:city,:experts]).order(:year_folio, :folio)
+
   end
 
   # GET /registries/1
@@ -106,9 +107,10 @@ class RegistriesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def registry_params
       params.require(:registry).permit(:consecutivo, :folio, :year_folio, :detenido, :expedient_id, :city_id, :authority_id,
-                                       :anexos_recibidos, :fecha_recepcion, :fecha_r, :hora_r, :fecha_e, :hora_e,
+                                       :anexos_recibidos, :fecha_recepcion, :fecha_r, :hora_r, :fecha_e, :hora_e, :nombre_expediente,
+                                       :expediente_relacionado,
                                        :fecha_entrega, :result_id, :anexos_entregados, :observaciones, :num_expediente,
-                                       expedient_attributes: Expedient.attribute_names.map(&:to_sym).push(:_destroy),
+                                       expedient_attributes: Expedient.attribute_names.map(&:to_sym).push(:_destroy, :nombre_expediente,:expediente_relacionado),
                                        city_attributes: [:id, :ciudad, :estado, :_destroy], expert_ids: [],
                                        authority_attributes: Authority.attribute_names.map(&:to_sym).push(:_destroy),
                                        experts_attributes: Expert.attribute_names.map(&:to_sym).push(:_destroy),

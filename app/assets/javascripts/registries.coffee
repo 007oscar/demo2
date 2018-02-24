@@ -8,5 +8,5 @@ $(document).on 'turbolinks:load', ->
   $('#registry_fecha_e').datepicker({dateFormat: "dd/mm/yy"})
   $('#registry_hora_e').timepicker({})
 
-#  $('#fecha_registro_recepcion').datepicker()
+#  $("#registry_expedient_attributes_nombre_expediente").autocomplete source: ["hoook", "hho", "hokl"]
 

@@ -7,6 +7,10 @@ class ExpedientsController < ApplicationController
     @expedients = Expedient.all
   end
 
+  def mostrar_expedientes
+    @expedientes = Expedient.order(:expediente).where("expediente like ?", "%#{params[:term]}%")
+    render json: @expedientes.map(&:expediente)
+  end
   # GET /expedients/1
   # GET /expedients/1.json
   def show
