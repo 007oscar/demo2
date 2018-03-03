@@ -118,7 +118,7 @@
         FOLIO(S): <%= @folios %>, EXPEDIENTE INTERNO:<%= @registries.first.num_expediente.split('/')[0] %>,
         AÑO: <%= @registries.first.num_expediente.split('/')[1] %> . <br>
         NÚMERO DE AVERIGUACIÓN PREVIA, PROCESO U OFICIO: <%= @registries.first.expedient.expediente %>. <br>
-        AUTORIDAD SOLICITANTE: <%= @registries.first.authority.nombre  %>.
+        AUTORIDAD SOLICITANTE(S): <%= @autoridades %>.
       </p>
     </div>
   </div>

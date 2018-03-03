@@ -71,7 +71,7 @@ table
   tr
     td colspan="16"  OBSERVACIONES
   tr
-    td colspan="16" = @print["DETENIDOS"]
+    td colspan="16" = (@print["DETENIDOS"].to_s + " DETENIDO(S)" if @print["DETENIDOS"] > 0 )
   tr
     td= link_to 'Reporte generado', reports_reporte_path
     td= link_to 'Registro', registries_path

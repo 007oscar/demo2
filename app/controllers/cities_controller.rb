@@ -7,6 +7,11 @@ class CitiesController < ApplicationController
     @cities = City.all
   end
 
+  def mostrar_ciudades
+    @ciudades = City.order(:ciudad).where("ciudad like :search or estado like :search", search: "%#{params[:term]}%")
+    render json: @ciudades.map{|c| "#{c.ciudad}, #{c.estado}"}
+  end
+
   # GET /cities/1
   # GET /cities/1.json
   def show

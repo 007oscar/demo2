@@ -1,6 +1,8 @@
 class Registry < ApplicationRecord
   before_save :convertir_fecha_r
   before_save :convertir_fecha_e
+  validate :relacionado, if: :existe_expediente
+  validate :ciudad, if: :existe_ciudad
 
   belongs_to :expedient
   belongs_to :city
@@ -23,11 +25,14 @@ class Registry < ApplicationRecord
   validates_uniqueness_of :folio, scope: :year_folio
   #validates_uniqueness_of :year_folio
   validates :experts, presence: true
+  validates :authority, presence: true
   validates :expedient, presence: true
   validates :folio, presence: true
   validates :year_folio, presence: true
   # validates :expedient_id, presence: true
-  validates_associated :expedient
+  validates_associated :expedient, presence: true
+  validates_associated :authority, presence: true
+
 
   #fecha de recepcion
   # @fecha_r = ""
@@ -81,4 +86,65 @@ class Registry < ApplicationRecord
     self.fecha_entrega = Time.parse( "#{@fecha_e} #{@hora_e}") if @fecha_e.present?
   end
 
+  def expediente
+    expedient.expediente if expedient.present?
+  end
+
+  def expediente=(expediente)
+    self.expedient = Expedient.find_or_create_by(expediente: expediente) if expediente.present?
+  end
+
+  def relacionado
+    if expedient.present?
+      if expedient.relacionado.present?
+        Expedient.find(expedient.relacionado).expediente
+      end
+    end
+  end
+
+  def relacionado=(relacionado)
+    res = Expedient.find_by_expediente(relacionado)
+    if res.present?
+      self.expedient.update(relacionado: res.id)
+    end
+  end
+
+  def existe_expediente
+    res = Expedient.find_by_expediente(self.relacionado) if self.relacionado.present?
+    if not res.present? and self.relacionado.present?
+      self.errors.add(:relacionado, "El expediente relacionado debe existir")
+    end
+  end
+
+  def ciudad
+   if city.present?
+     if city.ciudad.present? and city.estado.present?
+       "#{city.ciudad}, #{city.estado}"
+     end
+   end
+  end
+
+  def ciudad=(ciudad)
+    if ciudad.present?
+      if ciudad.split(',').size == 2
+        c = ciudad.split(',')[0].upcase
+        e = ciudad.split(',')[-1].upcase.take_while{|c| c != ''}
+        self.city = City.find_or_create_by(ciudad: c, estado: e) #if c.present? and e.present?
+      end
+    end
+    @ciudad = ciudad
+  end
+
+  def existe_ciudad
+    if @ciudad.present?
+      if @ciudad.split(",").size != 2
+        # self.ciudad = @ciudad
+        self.errors.add(:ciudad, "Verifique que la ciudad y el estado esten separados por una coma ','.")
+        self.city = nil
+      end
+    else
+      self.errors.add(:ciudad, "Debe existir una ciudad.")
+      self.city = nil
+    end
+  end
 end

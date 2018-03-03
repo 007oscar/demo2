@@ -17,10 +17,9 @@ class ReportsController < ApplicationController
           "INICIO", Registry.joins(:experts, :result).where("expert_id = ? and fecha_recepcion < ? and fecha_entrega is null and resultado != ?", \
                                   params[:perito], Date.civil(params["fecha_m"]["m(1i)"].to_i, params["fecha_m"]["m(2i)"].to_i), "NOTIFICACION").count,
           "PERITO", Expert.find(params[:perito]).nombre,
-          "DETENIDOS", Registry.where("detenido = ? and fecha_recepcion between ? and ?", \
-                                  true, Date.civil(params["fecha_m"]["m(1i)"].to_i, params["fecha_m"]["m(2i)"].to_i), \
-                                  Date.civil(params["fecha_m"]["m(1i)"].to_i, params["fecha_m"]["m(2i)"].to_i, -1)).count.to_s + \
-                                  " CON DETENIDO"]
+          "DETENIDOS", Registry.joins(:experts).where("detenido = ? and expert_id = ? and fecha_recepcion between ? and ?", \
+                                  true, params[:perito], Date.civil(params["fecha_m"]["m(1i)"].to_i, params["fecha_m"]["m(2i)"].to_i), \
+                                  (Date.civil(params["fecha_m"]["m(1i)"].to_i, params["fecha_m"]["m(2i)"].to_i, -1) + 1 )).count]
       book = Spreadsheet.open('mensual.xls', 'rb')
       sheet1 = book.worksheet 0
       mes = ["ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE"]
@@ -43,7 +42,10 @@ class ReportsController < ApplicationController
       sheet1.rows[12][14] = @print["MPF"]["INFORMES"] +  @print["PFM"]["INFORMES"] + \
                               @print["JDOS"]["INFORMES"] + @print["POL. FED."]["INFORMES"] + \
                               @print["PGJ EDO."]["INFORMES"] + @print["OTROS"]["INFORMES"]
-      sheet1.rows[18][0] = @print["DETENIDOS"]
+
+      # sheet1.rows[18][0] = " "
+
+      sheet1.rows[18][0] = @print["DETENIDOS"].to_s + " DETENIDO(S)" if @print["DETENIDOS"] > 0
       sheet1.rows[22][3] = @print["PERITO"]
       sheet1.rows[12][1] = @print["PERITO"]
       book.write 'reporte_generado.xls'
@@ -55,10 +57,9 @@ class ReportsController < ApplicationController
           "INICIO", Registry.joins(:experts,:result).where("expert_id = ? and fecha_recepcion < ? and fecha_entrega is null and resultado != ?", \
                                   params[:perito], Date.civil(params["fecha_s"]["s(1i)"].to_i, params["fecha_s"]["s(2i)"].to_i, params["fecha_s"]["s(3i)"].to_i) - 6, "NOTIFICACION").count,
           "PERITO", Expert.find(params[:perito]).nombre,
-          "DETENIDOS",Registry.where("detenido = ? and fecha_recepcion between ? and ?", \
-                                  true, Date.civil(params["fecha_s"]["s(1i)"].to_i, params["fecha_s"]["s(2i)"].to_i, params["fecha_s"]["s(3i)"].to_i) - 6, \
-                                Date.civil(params["fecha_s"]["s(1i)"].to_i, params["fecha_s"]["s(2i)"].to_i, params["fecha_s"]["s(3i)"].to_i)).count.to_s + \
-                                  " CON DETENIDO"]
+          "DETENIDOS",Registry.joins(:experts).where("detenido = ? and expert_id = ? and fecha_recepcion between ? and ?", \
+                                  true, params[:perito], (Date.civil(params["fecha_s"]["s(1i)"].to_i, params["fecha_s"]["s(2i)"].to_i, params["fecha_s"]["s(3i)"].to_i) - 6), \
+                                (Date.civil(params["fecha_s"]["s(1i)"].to_i, params["fecha_s"]["s(2i)"].to_i, params["fecha_s"]["s(3i)"].to_i) + 1)).count]
       book = Spreadsheet.open('semanal.xls', 'rb')
       sheet1 = book.worksheet 0
       # mes = ["ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE"]
@@ -89,7 +90,10 @@ class ReportsController < ApplicationController
       sheet1.rows[12][13] = @print["MPF"]["INFORMES"] +  @print["PFM"]["INFORMES"] + \
                               @print["JDOS"]["INFORMES"] + @print["POL. FED."]["INFORMES"] + \
                               @print["PGJ EDO."]["INFORMES"] + @print["OTROS"]["INFORMES"]
-      sheet1.rows[18][0] = @print["DETENIDOS"]
+
+      # sheet1.rows[18][0] = " "
+
+      sheet1.rows[18][0] = @print["DETENIDOS"].to_s + " DETENIDO(S)" if @print["DETENIDOS"] > 0
       sheet1.rows[22][3] = @print["PERITO"]
       sheet1.rows[12][1] = @print["PERITO"]
 
@@ -120,12 +124,14 @@ class ReportsController < ApplicationController
   def caractula1
     @registries = Expedient.find(params[:id]).registries
     expertos = Expert.joins(:registries).where('registries.num_expediente = ?', @registries.first.num_expediente)
+    f = @registries.collect{|r| "#{r.folio}/#{r.year_folio}"}.sort
+    f.sort!{|a, z| a.split('/')[0].to_i <=> z.split('/')[0].to_i}.sort!{|a, z| a.split('/')[-1].to_i <=> z.split('/')[-1].to_i}
     if @registries.count > 2
-      @folios = @registries.collect{|r| "#{r.folio}/#{r.year_folio}"}[0..-2].join(', ') + " Y " + @registries.collect{|r| "#{r.folio}/#{r.year_folio}"}[-1]
+      @folios = f[0..-2].join(', ') + " Y " + f[-1]
     elsif @registries.count > 1
-      @folios = @registries.collect{|r| "#{r.folio}/#{r.year_folio}"}.join(' Y ')
+      @folios = f.join(' Y ')
     else
-      @folios = "#{@registries.first.folio}/#{@registries.first.year_folio}"
+      @folios = f.join('')
     end
 
     @especialidades = expertos.collect{|e| e.specialties}.uniq.collect{|e| e.first.especialidad}.uniq
@@ -137,6 +143,14 @@ class ReportsController < ApplicationController
       @especialidades = @especialidades.join('')
     end
 
+    a = @registries.collect{|a| "#{a.authority.puesto.upcase} #{a.authority.nombre.upcase}"}.uniq.sort
+    if a.count > 2
+      @autoridades = a[0..-2].join(', ') + " Y " + a[-1]
+    elsif a.count > 1
+      @autoridades = a.join(' Y ')
+    else
+      @autoridades = a.join('')
+    end
 
   end
 

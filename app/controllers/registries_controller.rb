@@ -21,7 +21,7 @@ class RegistriesController < ApplicationController
   def new
     @registry = Registry.new
     @fecha_r = Time.new
-    @registry.build_expedient
+    # @registry.build_expedient
     @default_values = {expediente: '', relacionado: ''}
     # @registry.build_expedient
     if Registry.count < 1
@@ -107,8 +107,8 @@ class RegistriesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def registry_params
       params.require(:registry).permit(:consecutivo, :folio, :year_folio, :detenido, :expedient_id, :city_id, :authority_id,
-                                       :anexos_recibidos, :fecha_recepcion, :fecha_r, :hora_r, :fecha_e, :hora_e, :nombre_expediente,
-                                       :expediente_relacionado,
+                                       :anexos_recibidos, :fecha_recepcion, :fecha_r, :hora_r, :fecha_e, :hora_e, :expediente,
+                                       :relacionado,:ciudad,
                                        :fecha_entrega, :result_id, :anexos_entregados, :observaciones, :num_expediente,
                                        expedient_attributes: Expedient.attribute_names.map(&:to_sym).push(:_destroy, :nombre_expediente,:expediente_relacionado),
                                        city_attributes: [:id, :ciudad, :estado, :_destroy], expert_ids: [],

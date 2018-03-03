@@ -5,15 +5,13 @@
   = f.input :folio
   = f.input :year_folio
   = f.input :detenido, as: :radio_buttons
-  = f.association :expedient do |c|
-    .ui-widget
-      = c.input :nombre_expediente
-      /, collection:  expedients_mostrar_expedientes_path(format: :json)
-    = c.input :expediente_relacionado
-  #ciudad
-    #ciudad_lista
-      = f.association :city, collection: City.order(:ciudad), label_method: lambda{| ciudad | "#{ciudad.ciudad}, #{ciudad.estado}"}, prompt: 'Escoge un ciudad...'
-    = link_to_add_association 'agregar ciudad...', f, :city
+  = f.input :expediente
+  = f.input :relacionado
+  /#ciudad
+  /  #ciudad_lista
+  /    = f.association :city, collection: City.order(:ciudad), label_method: lambda{| ciudad | "#{ciudad.ciudad}, #{ciudad.estado}"}, prompt: 'Escoge un ciudad...'
+  /  = link_to_add_association 'agregar ciudad...', f, :city
+  = f.input :ciudad
   #autoridad
     #autoridad_lista
       = f.association :authority, collection: Authority.order(:nombre), label_method: :nombre, prompt: 'Escoge una autoridad...'

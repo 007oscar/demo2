@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'reports/:id/caractula2', to: 'reports#caractula2', as: 'reports_caractula2'
 
   get 'expedients/mostrar_expedientes', to: 'expedients#mostrar_expedientes', as: 'mostrar_expedientes'
+  get 'cities/mostrar_ciudades', to: 'cities#mostrar_ciudades', as: 'mostrar_ciudades'
 
   get 'reports/verificacion'
   # get 'reports/validacion/:id'
