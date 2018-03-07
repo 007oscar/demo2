@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   get 'expedients/mostrar_expedientes', to: 'expedients#mostrar_expedientes', as: 'mostrar_expedientes'
   get 'cities/mostrar_ciudades', to: 'cities#mostrar_ciudades', as: 'mostrar_ciudades'
+  get 'authorities/mostrar_autoridades', to: 'authorities#mostrar_autoridades', as: 'mostrar_autoridades'
 
   get 'reports/verificacion'
   # get 'reports/validacion/:id'

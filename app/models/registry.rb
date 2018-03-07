@@ -3,6 +3,7 @@ class Registry < ApplicationRecord
   before_save :convertir_fecha_e
   validate :relacionado, if: :existe_expediente
   validate :ciudad, if: :existe_ciudad
+  validate :autoridad, if: :existe_autoridad
 
   belongs_to :expedient
   belongs_to :city
@@ -128,8 +129,11 @@ class Registry < ApplicationRecord
     if ciudad.present?
       if ciudad.split(',').size == 2
         c = ciudad.split(',')[0].upcase
-        e = ciudad.split(',')[-1].upcase.take_while{|c| c != ''}
-        self.city = City.find_or_create_by(ciudad: c, estado: e) #if c.present? and e.present?
+        e = ciudad.split(',')[-1].upcase
+        cont = 0
+        e.each_char{|c|  (c== " ")?(cont += 1):( break)} #se quitan los espacios despues de la coma para evitar
+        # espacios al inicio del nombre del estado.
+        self.city = City.find_or_create_by(ciudad: c, estado: e[cont..-1]) #if c.present? and e.present?
       end
     end
     @ciudad = ciudad
@@ -145,6 +149,27 @@ class Registry < ApplicationRecord
     else
       self.errors.add(:ciudad, "Debe existir una ciudad.")
       self.city = nil
+    end
+  end
+
+  def autoridad
+    if authority.present?
+      Authority.find_or_create_by(nombre: authority.nombre, puesto: authority.puesto).nombre
+    end
+  end
+
+  def autoridad=(autoridad)
+    if autoridad.present?
+      a = Authority.find_by_nombre(autoridad)
+      if a.present?
+        self.authority = a
+      end
+    end
+  end
+
+  def existe_autoridad
+    if not Authority.find_by_nombre(autoridad)
+      self.errors.add :autoridad, "La autoridad debe existir, sino debe agregar una nueva"
     end
   end
 end

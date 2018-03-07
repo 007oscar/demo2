@@ -108,7 +108,7 @@ class RegistriesController < ApplicationController
     def registry_params
       params.require(:registry).permit(:consecutivo, :folio, :year_folio, :detenido, :expedient_id, :city_id, :authority_id,
                                        :anexos_recibidos, :fecha_recepcion, :fecha_r, :hora_r, :fecha_e, :hora_e, :expediente,
-                                       :relacionado,:ciudad,
+                                       :relacionado,:ciudad, :autoridad,
                                        :fecha_entrega, :result_id, :anexos_entregados, :observaciones, :num_expediente,
                                        expedient_attributes: Expedient.attribute_names.map(&:to_sym).push(:_destroy, :nombre_expediente,:expediente_relacionado),
                                        city_attributes: [:id, :ciudad, :estado, :_destroy], expert_ids: [],

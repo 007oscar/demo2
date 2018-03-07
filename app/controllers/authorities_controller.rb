@@ -17,6 +17,11 @@ class AuthoritiesController < ApplicationController
     @authority = Authority.new
   end
 
+  def mostrar_autoridades
+    @autoridades = Authority.order(:nombre).where("nombre like :search", search: "%#{params[:term]}%")
+    render json: @autoridades.map{|a| a.nombre}
+  end
+
   # GET /authorities/1/edit
   def edit
   end

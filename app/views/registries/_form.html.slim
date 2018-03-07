@@ -7,17 +7,12 @@
   = f.input :detenido, as: :radio_buttons
   = f.input :expediente
   = f.input :relacionado
-  /#ciudad
-  /  #ciudad_lista
-  /    = f.association :city, collection: City.order(:ciudad), label_method: lambda{| ciudad | "#{ciudad.ciudad}, #{ciudad.estado}"}, prompt: 'Escoge un ciudad...'
-  /  = link_to_add_association 'agregar ciudad...', f, :city
   = f.input :ciudad
   #autoridad
     #autoridad_lista
-      = f.association :authority, collection: Authority.order(:nombre), label_method: :nombre, prompt: 'Escoge una autoridad...'
+      = f.input :autoridad
     = link_to_add_association 'agregar autoridad...', f, :authority
-  .field
-    = f.input :anexos_recibidos, as: :text, input_html: {rows: 4}
+  = f.input :anexos_recibidos
   #fecha_registro_recepcion
     = f.input :fecha_r, as: :string, input_html: {value: (@fecha_r.strftime("%d/%m/%Y") if @fecha_r.present?)}
     = f.input :hora_r, as: :string, input_html: { value: (@fecha_r.strftime("%I:%M %p") if @fecha_r.present?)}
@@ -29,8 +24,6 @@
   #resultado
     = f.association :result, collection: Result.order(:resultado), label_method: :resultado, :selected => (registry.result_id if registry.result_id.present?) , include_blank: true
   = f.input :anexos_entregados
-  .field
-    = f.input :observaciones
-  .field
-    = f.input :num_expediente
+  = f.input :observaciones
+  = f.input :num_expediente
   = f.submit

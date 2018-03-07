@@ -7,6 +7,7 @@ $( document ).on('turbolinks:load', function() {
     autocompletar("#registry_expediente", "/expedients/mostrar_expedientes");
     autocompletar("#registry_relacionado", '/expedients/mostrar_expedientes');
     autocompletar("#registry_ciudad",'/cities/mostrar_ciudades');
+    autocompletar("#registry_autoridad",'/authorities/mostrar_autoridades');
 
     /////////////////////
     // $.widget( "custom.combobox", {
@@ -152,7 +153,7 @@ function autocompletar(id, ruta){
             }
             $.getJSON( window.location.origin + ruta + '?term=' + term , request, function( data, status, xhr ) {
                 cache[ term ] = data;
-                response( data );
+                response(data);
             });
         }
     });
