@@ -55,3 +55,7 @@ gem 'simple_form'
 gem 'spreadsheet', '>= 1.1.4'
 gem 'jquery-ui-rails'
 gem 'will_paginate', '>3.0'
+
+gem 'devise', '~> 4.3.0'
+# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', git: 'https://github.com/codahale/bcrypt-ruby.git', :require => 'bcrypt'

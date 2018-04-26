@@ -8,7 +8,8 @@ class ExpedientsController < ApplicationController
   end
 
   def mostrar_expedientes
-    @expedientes = Expedient.order(:expediente).where("expediente like ?", "%#{params[:term]}%")
+    @expedientes = Expedient.joins(:registries).where("num_expediente != '' and expediente like ?",
+                                                      "%#{params[:term]}%").uniq
     render json: @expedientes.map(&:expediente)
   end
   # GET /expedients/1

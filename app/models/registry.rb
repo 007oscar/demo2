@@ -30,9 +30,9 @@ class Registry < ApplicationRecord
   validates :expedient, presence: true
   validates :folio, presence: true
   validates :year_folio, presence: true
-  # validates :expedient_id, presence: true
-  validates_associated :expedient, presence: true
-  validates_associated :authority, presence: true
+
+  # validates_associated :expedient, presence: true
+  # validates_associated :authority, presence: true
 
 
   #fecha de recepcion
@@ -115,6 +115,12 @@ class Registry < ApplicationRecord
     if not res.present? and self.relacionado.present?
       self.errors.add(:relacionado, "El expediente relacionado debe existir")
     end
+#     if res.registries.present?
+#       if not res.registries.first.num_expediente.present?
+#         self.errors.add(:relacionado, "El expediente relacionado NO tiene numero de expediente, no se puede
+# relacionar con él.")
+#       end
+#     end
   end
 
   def ciudad

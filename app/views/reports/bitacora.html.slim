@@ -11,5 +11,7 @@
     = date_select "fecha_i", "i", :start_year => Date.today.year - 50, :end_year => Date.today.year, :order => [:day, :month, :year]
     label Fecha final :
     = date_select "fecha_f", "f", :start_year => Date.today.year - 50, :end_year => Date.today.year, :order => [:day, :month, :year]
+    label Iniciar contador en :
+    = number_field "inicio", 1
 
   = submit_tag("Update")

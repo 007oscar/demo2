@@ -24,5 +24,15 @@ html
       = link_to "Autoridades", authorities_path
       |    |
       = link_to "Bitacora", reports_bitacora_path
+      |    |
+      - if user_signed_in?
+        = link_to "Salir", destroy_user_session_path, method: :delete
+      - else
+        = link_to "Ingresar", user_session_path
   body
+    .conteiner
+      p.notice
+        = notice
+      p.alert
+        = alert
     = yield
