@@ -1,4 +1,4 @@
-class RegistriesController < ApplicationController
+﻿class RegistriesController < ApplicationController
   # before_action :authenticate_user!
   before_action :set_registry, only: [:show, :edit, :update, :destroy]
   after_action :actualizar_registros, only: [:update, :create, :destroy]
@@ -107,8 +107,8 @@ class RegistriesController < ApplicationController
     end
 
   def actualizar_registros
-    #registry = Registry.all.order(:year_folio, :folio) #.where(year_folio: 2018).order(:year_folio, :folio)
-    registry = Registry.where(year_folio: 2018).order(:year_folio, :folio)
+    registry = Registry.all.order(:year_folio, :folio)
+    #registry = Registry.where(year_folio: 2016).order(:year_folio, :folio)
     contador = 1
     registry.update_all(num_expediente: '')
     ultimo = "1"
@@ -116,10 +116,10 @@ class RegistriesController < ApplicationController
     expedients = Expedient.all
 
     registry.each do |r|
-      rel = expedients.find(r.expedient).relacionado
+      rel = expedients.find(r.expedient_id).relacionado
       if rel.nil?
         c = Registry.where("expedient_id = ? and num_expediente != '' ", r.expedient_id).first
-        if c.nil?
+        if c.nil? or c.num_expediente == ""
           #expedients.find(r.expedient).registries.where.not(num_expediente:'').first.nil?
           if (r.year_folio == ultimo.split("/")[1].to_i)
             ultimo = (ultimo.split("/")[0].to_i + 1).to_s + "/" + ultimo.split("/")[1]
