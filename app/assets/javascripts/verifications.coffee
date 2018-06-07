@@ -14,7 +14,8 @@ $(document).on 'turbolinks:load', ->
       resetear_select($("#verification_anexos_disp_alm_elect"), "NO APLICA")
       resetear_select($("#verification_anexos_componentes_electronicos"), "NO APLICA")
       resetear_select($("#verification_otros"), "NO")
-
+#  $("#verification_registry_id").change ->
+#    $("#verification_expedient_id").value $("#verification_registry_id").value
 resetear_select =(t, v) ->
   switch v
     when "SI" then pos = 0

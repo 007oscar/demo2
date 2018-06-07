@@ -48,8 +48,8 @@
           <td><%= "#{registry.city.ciudad}, #{registry.city.estado}" %></td>
           <td><%= registry.authority.nombre %></td>
           <td><%= registry.anexos_recibidos %></td>
-          <td><%= registry.fecha_recepcion.strftime("%d/%m/%Y") %></td>
-          <td><%= registry.fecha_entrega.strftime("%d/%m/%Y") %></td>
+          <td><%= registry.fecha_recepcion.strftime("%d/%m/%Y") if not registry.fecha_recepcion.nil? %></td>
+          <td><%= registry.fecha_entrega.strftime("%d/%m/%Y") if not registry.fecha_entrega.nil? %></td>
           <td><%= registry.result.resultado if not registry.result.nil? %></td>
           <td><%= registry.observaciones %></td>
         </tr>

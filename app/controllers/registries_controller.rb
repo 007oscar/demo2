@@ -107,8 +107,8 @@
     end
 
   def actualizar_registros
-    registry = Registry.all.order(:year_folio, :folio)
-    #registry = Registry.where(year_folio: 2016).order(:year_folio, :folio)
+    #registry = Registry.all.order(:year_folio, :folio)
+    registry = Registry.where(year_folio: 2018).order(:year_folio, :folio)
     contador = 1
     registry.update_all(num_expediente: '')
     ultimo = "1"
